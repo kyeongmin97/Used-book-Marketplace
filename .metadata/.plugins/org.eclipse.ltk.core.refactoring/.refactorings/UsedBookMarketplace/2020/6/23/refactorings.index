@@ -40,3 +40,10 @@
 1591365105103	Encapsulate field 'id'
 1591376536621	Delete element
 1591376603067	Delete element
+1591379596299	Encapsulate field 'title'
+1591379610870	Encapsulate field 'author'
+1591379616670	Encapsulate field 'publisher'
+1591379623756	Encapsulate field 'publicationYear'
+1591379629704	Encapsulate field 'ISBN'
+1591379633932	Encapsulate field 'price'
+1591379640561	Encapsulate field 'bookState'
