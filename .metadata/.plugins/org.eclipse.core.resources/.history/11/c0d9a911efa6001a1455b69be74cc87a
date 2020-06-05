@@ -1,0 +1,12 @@
+package UsedBookMarketplace;
+
+import javax.swing.*;
+
+public class Search extends JPanel {
+	private JLabel search;
+	
+	public Search() {
+		search = new JLabel("search!!!!!!!");
+		add(search);
+	}
+}

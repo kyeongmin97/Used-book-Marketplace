@@ -1,0 +1,10 @@
+package usedbookmarketplace.model.data.user;
+
+import java.util.Vector;
+
+import usedbookmarketplace.model.data.Book;
+
+public class GeneralUser extends User {
+
+	private Vector<Book> bookList = new Vector<Book>();
+}

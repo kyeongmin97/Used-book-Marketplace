@@ -1,0 +1,77 @@
+package usedbookmarketplace.view;
+
+import java.awt.*;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class Register extends JPanel {
+
+	public JButton register_btn;
+	
+	private JLabel id_label, pw_label, name_label, phoneNum_label, email_label;
+	private JTextField id_txtf, name_txtf, phoneNum_txtf, email_txtf;
+	private JPasswordField pw_pwf;
+
+	//»ý¼ºÀÚ
+	public Register() {		
+		id_label = new JLabel("ID :");
+		pw_label = new JLabel("PW :");
+		name_label = new JLabel("Use Name :");
+		phoneNum_label = new JLabel("Phone Number :");
+		email_label = new JLabel("E-mail :");
+		
+		id_txtf = new JTextField(15);
+		pw_pwf = new JPasswordField(15);
+		name_txtf = new JTextField(15);
+		phoneNum_txtf = new JTextField(15);
+		email_txtf = new JTextField(15);
+		
+		register_btn = new JButton("Register");
+		
+		setLayout(null);
+		
+		id_label.setBounds(230, 100, 100, 20);
+		id_txtf.setBounds(280, 100, 120, 20);
+		pw_label.setBounds(230, 130, 100, 20);
+		pw_pwf.setBounds(280, 130, 120, 20);
+		name_label.setBounds(230, 160, 100, 20);
+		name_txtf.setBounds(280, 160, 120, 20);
+		phoneNum_label.setBounds(230, 190, 100, 20);
+		phoneNum_txtf.setBounds(280, 190, 120, 20);
+		email_label.setBounds(230, 220, 100, 20);
+		email_txtf.setBounds(280, 2, 120, 20);
+		
+		register_btn.setOpaque(false);
+		register_btn.setBounds(230, 350, 175, 35);
+		
+		add(id_label);
+		add(id_txtf);
+		add(pw_label);
+		add(pw_pwf);
+		add(name_label);
+		add(name_txtf);
+		add(phoneNum_label);
+		add(phoneNum_txtf);
+		add(email_label);
+		add(email_txtf);
+		add(register_btn);
+		
+	}
+	
+	public void addActionListeners(ActionListener action){
+		register_btn.addActionListener(action);
+	}
+	
+	public String getIDtxt() {
+		return id_txtf.getText();
+	}
+	
+	public String getPWtxt() {
+		return new String(pw_pwf.getPassword());
+	}
+}

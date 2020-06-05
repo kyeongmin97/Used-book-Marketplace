@@ -1,0 +1,64 @@
+package usedbookmarketplace.model.filesystem;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.Vector;
+
+import usedbookmarketplace.model.data.Book;
+import usedbookmarketplace.model.data.user.GeneralUser;
+
+public class FileProcess {
+
+	public Vector<Book> readBookFile(String FileName) {
+		Vector<Book> bookList = new Vector<Book>();
+		
+		Scanner input = null;
+		try	{
+			File file = new File(FileName);
+			input = new Scanner(file);
+		}
+		catch(Exception e) {
+			System.out.println("Unknown File");
+		}
+		
+		while (input.hasNext()) {
+			String line = input.nextLine();
+			
+			if(!line.startsWith("//")) {
+				String[] tokens = line.split(":");
+				bookList.add(new Book(tokens));
+			}
+		}
+		return bookList;
+	}
+	
+	public Vector<GeneralUser> readAccountFile(String FileName) {
+		Vector<GeneralUser> accountList = new Vector<GeneralUser>();
+				
+		try	{
+			File file = new File(FileName);
+			Scanner scan = new Scanner(file);
+			
+			while (scan.hasNext()) {			
+				String line = scan.nextLine();
+				
+				if(!line.startsWith("//")) {
+					String[] tokens = line.split(":");
+					accountList.add(new GeneralUser(tokens));
+				}			
+			}
+			scan.close();
+			
+			return accountList;
+		}
+		catch(FileNotFoundException  e) {
+			System.out.println("File Not Found");
+			return null;
+		}
+	}	
+	
+	public void writeFile_addAccount(String FileName) {
+		
+	}
+}

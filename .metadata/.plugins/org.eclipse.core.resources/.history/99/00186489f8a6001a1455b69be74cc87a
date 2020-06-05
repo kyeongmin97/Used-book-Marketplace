@@ -1,0 +1,27 @@
+package used_book_marketplace_gui.copy;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class MainFrame extends JFrame{
+	private CardLayout card = new CardLayout();
+	private Login login = new Login(card);
+	private Search search = new Search();
+
+	public MainFrame(){
+		
+		setLayout(card);
+		this.add("LOGIN", login);
+		this.add("SEARCH", search);
+		
+		setTitle("Used-book Marketplace");
+		setSize(640, 480);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		setVisible(true);
+	}
+	
+	public CardLayout getCardLayout(){
+		return this.card;
+	}
+}

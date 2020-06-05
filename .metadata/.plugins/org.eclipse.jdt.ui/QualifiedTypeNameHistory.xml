@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.database.AccountDB"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.database.BookDB"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.MainFrame"/>
+    <fullyQualifiedTypeName name="java.util.Vector"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.Book"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.filesystem.FileProcess"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.user.Admin"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+    <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
+    <fullyQualifiedTypeName name="java.awt.GridLayout"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.user.GeneralUser"/>
+    <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+    <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
+    <fullyQualifiedTypeName name="java.io.FileWriter"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Database"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+</qualifiedTypeNameHistroy>

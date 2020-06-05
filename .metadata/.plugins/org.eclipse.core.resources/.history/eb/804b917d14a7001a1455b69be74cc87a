@@ -1,0 +1,5 @@
+package usedbookmarketplace.model.database;
+
+public class Database {
+
+}

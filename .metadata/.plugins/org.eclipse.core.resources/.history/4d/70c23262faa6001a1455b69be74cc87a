@@ -1,0 +1,5 @@
+package usedbookmarketplace.database;
+
+public class AccountList {
+
+}

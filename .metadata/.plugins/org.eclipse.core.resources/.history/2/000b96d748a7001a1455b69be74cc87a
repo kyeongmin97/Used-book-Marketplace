@@ -1,0 +1,95 @@
+package usedbookmarketplace.model.filesystem;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.Vector;
+
+import usedbookmarketplace.model.data.Book;
+import usedbookmarketplace.model.data.user.GeneralUser;
+
+public class FileProcess {
+
+	// read a bookDB file
+	public Vector<Book> readBookFile(String FileName) {
+		Vector<Book> bookList = new Vector<Book>();
+		
+		try	{
+			File file = new File(FileName);
+			Scanner scan = new Scanner(file);
+			
+			while (scan.hasNext()) {			
+				String line = scan.nextLine();
+				
+				if(!line.startsWith("//")) {
+					String[] tokens = line.split(":");
+					bookList.add(new Book(tokens));
+				}			
+			}
+			scan.close();
+			
+			return bookList;
+		}
+		catch(FileNotFoundException  e) {
+			System.out.println("File Not Found");
+			return null;
+		}
+	}
+	
+	// read an accountDB file
+	public Vector<GeneralUser> readAccountFile(String FileName) {
+		Vector<GeneralUser> accountList = new Vector<GeneralUser>();
+				
+		try	{
+			File file = new File(FileName);
+			Scanner scan = new Scanner(file);
+			
+			while (scan.hasNext()) {			
+				String line = scan.nextLine();
+				
+				if(!line.startsWith("//")) {
+					String[] tokens = line.split(":");
+					accountList.add(new GeneralUser(tokens));
+				}			
+			}
+			scan.close();
+			
+			return accountList;
+		}
+		catch(FileNotFoundException  e) {
+			System.out.println(e);
+			return null;
+		}
+	}	
+
+	// write all accounts to the file
+	public void writeFile(String FileName) {
+		try{
+            File file = new File(FileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+            
+            if(file.isFile() && file.canWrite()){
+                //쓰기
+                bufferedWriter.write("문자열 추가1");
+                //개행문자쓰기
+                bufferedWriter.newLine();
+                bufferedWriter.write("문자열 추가2");
+                
+                bufferedWriter.close();
+            }
+        }catch (IOException e) {
+            System.out.println(e);
+        }
+
+
+출처: https://jeong-pro.tistory.com/69 [기본기를 쌓는 정아마추어 코딩블로그]
+	}
+	
+	// write the added account to the file
+	public void writeFile(String FileName, String[] userInfo) {
+		
+	}
+}

@@ -1,0 +1,5 @@
+package usedbookmarketplace.model.data.user;
+
+public class User {
+
+}

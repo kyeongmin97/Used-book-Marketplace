@@ -1,0 +1,19 @@
+package usedbookmarketplace.model.database;
+
+import java.util.Vector;
+
+import usedbookmarketplace.model.data.Book;
+import usedbookmarketplace.model.data.user.GeneralUser;
+import usedbookmarketplace.model.filesystem.FileProcess;
+
+public class Database {
+
+	private Vector<Book> bookList = new Vector<Book>();
+	private Vector<GeneralUser> generalUserList = new Vector<GeneralUser>();
+	
+	public Database() {
+		FileProcess file = new FileProcess();
+		file.readFile("Book_DB.txt");
+		
+	}
+}

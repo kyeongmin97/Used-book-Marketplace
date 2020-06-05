@@ -1,0 +1,20 @@
+package usedbookmarketplace.model.data;
+
+enum BookState{
+	EXCELLENT, GOOD, FIAR
+}
+
+public class Book {
+	private String title;
+	private String author;
+	private String publisher;
+	private int publicationYear;
+	private int ISBN;
+	private int price;
+	private BookState bookState; 
+	private String sellerName;
+	
+	public Book(String[] bookinfo) {
+		
+	}
+}

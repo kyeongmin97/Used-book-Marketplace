@@ -1,0 +1,10 @@
+package usedbookmarketplace.main;
+
+import usedbookmarketplace.model.database.Database;
+import usedbookmarketplace.view.MainFrame;
+
+public class Controller {
+	public Controller(Database db, MainFrame view) {
+		
+	}
+}

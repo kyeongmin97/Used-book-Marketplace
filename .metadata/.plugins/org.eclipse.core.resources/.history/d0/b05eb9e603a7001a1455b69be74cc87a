@@ -1,0 +1,7 @@
+package usedbookmarketplace.main;
+
+public class Controller {
+	public Controller(Database db, Mainframe view) {
+		
+	}
+}
