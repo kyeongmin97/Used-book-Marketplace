@@ -47,3 +47,4 @@
 1591379629704	Encapsulate field 'ISBN'
 1591379633932	Encapsulate field 'price'
 1591379640561	Encapsulate field 'bookState'
+1591467812065	Encapsulate field 'isSold'

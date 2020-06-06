@@ -23,4 +23,5 @@
     <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
     <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.user.User"/>
 </qualifiedTypeNameHistroy>

@@ -9,16 +9,23 @@ public class Book {
 	private String price;
 	private String bookState;
 	private String sellerID;
+	private boolean isSold;
 
-	public Book(String[] bookinfo) {
-		title = bookinfo[0];
-		author = bookinfo[1];
-		publisher = bookinfo[2];
-		publicationYear = bookinfo[3];
-		ISBN = bookinfo[4];
-		price = bookinfo[5];
-		bookState = bookinfo[6]; // excellent, good, fair
-		sellerID = bookinfo[7];
+	// constructor
+	public Book(String[] bookInfo) {
+		title = bookInfo[0];
+		author = bookInfo[1];
+		publisher = bookInfo[2];
+		publicationYear = bookInfo[3];
+		ISBN = bookInfo[4];
+		price = bookInfo[5];
+		bookState = bookInfo[6];	 // excellent, good, fair
+		sellerID = bookInfo[7];
+		
+		if (bookInfo[8].equals("Sold"))
+			isSold = true;
+		else
+			isSold = false;
 	}
 
 // need to change a condition
@@ -31,18 +38,29 @@ public class Book {
 //			return null;
 //		} 
 //	}
-	public String[] getAllBookInfo() {
-		String[] bookInfo = { title, author, publisher, publicationYear, ISBN, price, bookState, sellerID };
+	
+	// returns all book informations
+	public String[] getBookInfo() {
+		String isSoldstr;
+		if (isSold == true)
+			isSoldstr = "Sold";
+		else
+			isSoldstr = "Not Sold";
 		
+		String[] bookInfo = { title, author, publisher, publicationYear, ISBN, price, bookState, sellerID, isSoldstr };
 		return bookInfo;
 	}
+	
+	// getter, setter
+	public String getSellerID() 		{ return this.sellerID; }
+	public String getTitle() 			{ return title; }
+	public String getAuthor()			{ return author; }
+	public String getPublisher()		{ return publisher; }
+	public String getPublicationYear()	{ return publicationYear; }
+	public String getISBN()				{ return ISBN; }
+	public String getPrice() 			{ return price; }
+	public String getBookState() 		{ return bookState; }
 
-	public String getSellerID() { return this.sellerID; }
-	public String getTitle() { return title; }
-	public String getAuthor() { return author; }
-	public String getPublisher() { return publisher; }
-	public String getPublicationYear() { return publicationYear; }
-	public String getISBN() { return ISBN; }
-	public String getPrice() { return price; }
-	public String getBookState() { return bookState; }
+	public boolean isSold() 			{ return isSold; }
+	public void setSold(boolean isSold) { this.isSold = isSold;	}
 }

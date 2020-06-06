@@ -11,8 +11,7 @@ import javax.swing.JTextField;
 
 public class Register extends JPanel {
 
-	public JButton register_btn;
-	
+	public JButton register_btn, back_btn;
 	private JLabel id_label, pw_label, name_label, phoneNum_label, email_label;
 	private JTextField id_txtf, name_txtf, phoneNum_txtf, email_txtf;
 	private JPasswordField pw_pwf;
@@ -32,6 +31,7 @@ public class Register extends JPanel {
 		email_txtf = new JTextField(15);
 		
 		register_btn = new JButton("Register");
+		back_btn = new JButton("Back");
 		
 		setLayout(null);
 		
@@ -47,8 +47,11 @@ public class Register extends JPanel {
 		phoneNum_txtf.setBounds(280, 190, 120, 20);
 		email_txtf.setBounds(280, 220, 120, 20);
 		
-		register_btn.setOpaque(false);
-		register_btn.setBounds(230, 280, 175, 35);
+		JPanel btns_panel = new JPanel();
+		btns_panel.setOpaque(false);
+		btns_panel.add(register_btn);
+		btns_panel.add(back_btn);
+		btns_panel.setBounds(150, 270, 300, 35);
 		
 		add(id_label);
 		add(id_txtf);
@@ -60,15 +63,26 @@ public class Register extends JPanel {
 		add(phoneNum_txtf);
 		add(email_label);
 		add(email_txtf);
-		add(register_btn);
+		add(btns_panel);
 		
 	}
 	
+	// add the actionListener to buttons
 	public void addActionListeners(ActionListener action){
 		register_btn.addActionListener(action);
+		back_btn.addActionListener(action);
 	}
 	
-	public String[] getAlltxt() {
+	public void setAllTxtEmpty() {
+		id_txtf.setText(null);
+		pw_pwf.setText(null);
+		name_txtf.setText(null);
+		phoneNum_txtf.setText(null);
+		email_txtf.setText(null);
+	}
+	
+	// Returns all texts contained in the text box
+	public String[] getAllTxt() {
 		String[] tokens = new String[5];
 		
 		tokens[0] = id_txtf.getText();
@@ -80,23 +94,10 @@ public class Register extends JPanel {
 		return tokens;
 	}
 	
-	public String getIDtxt() {
-		return id_txtf.getText();
-	}
-	
-	public String getPWtxt() {
-		return new String(pw_pwf.getPassword());
-	}
-	
-	public String getNametxt() {
-		return name_txtf.getText();
-	}
-	
-	public String getPhoneNumtxt() {
-		return phoneNum_txtf.getText();
-	}
-	
-	public String getEmailtxt() {
-		return email_txtf.getText();
-	}
+	// getter, setter
+	public String getIDtxt() 		{	return id_txtf.getText();		}
+	public String getPWtxt() 		{	return new String(pw_pwf.getPassword()); }
+	public String getNametxt() 		{	return name_txtf.getText();		}
+	public String getPhoneNumtxt() 	{	return phoneNum_txtf.getText(); }
+	public String getEmailtxt()		{	return email_txtf.getText();	}
 }

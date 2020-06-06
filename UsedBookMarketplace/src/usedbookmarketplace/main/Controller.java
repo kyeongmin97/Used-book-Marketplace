@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import usedbookmarketplace.model.data.user.GeneralUser;
+import usedbookmarketplace.model.data.user.User;
 import usedbookmarketplace.model.database.Database;
 import usedbookmarketplace.view.MainFrame;
 import usedbookmarketplace.view.Search;
@@ -11,6 +12,7 @@ import usedbookmarketplace.view.Search;
 public class Controller implements ActionListener {
 	Database DB;
 	MainFrame view;
+	User currentUser;
 
 	public Controller(Database db, MainFrame view) {
 		this.DB = db;
@@ -23,7 +25,7 @@ public class Controller implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		try {
 			// Class Login
-			// login view : click login button
+			// login view : if "login button" is clicked
 			if (event.getSource() == view.login.login_btn) {
 				String id = view.login.getIDtxt();
 				String pw = view.login.getPWtxt();
@@ -34,38 +36,55 @@ public class Controller implements ActionListener {
 					view.changeCard(view.search);
 				}
 			}
-			// login view : click register button
+			// login view : if "register button" is clicked
 			else if (event.getSource() == view.login.register_btn) {
 				view.getCardLayout().show(view.getContentPane(), "REGISTER");
 			}
 			
 			// Class Register
-			// register view : click register button
+			// register view : if "register button" is clicked
 			else if (event.getSource() == view.register.register_btn) {
-				if (view.register.getIDtxt().isEmpty() || view.register.getPWtxt().isEmpty()
-						|| view.register.getNametxt().isEmpty() || view.register.getEmailtxt().isEmpty()
-						|| !view.register.getPhoneNumtxt().matches("[0-9|-]+"))
-					throw new Exception();
-				
-				for (int i = 0; i < DB.getAccountDB().size(); i++) {
-					if (view.register.getIDtxt().equals(DB.getAccountDB().get(i)))
-						throw new Exception();
-				}
+				checkRegisterException();
 
-				GeneralUser newUser = new GeneralUser(view.register.getAlltxt());
+				GeneralUser newUser = new GeneralUser(view.register.getAllTxt());
 				DB.addUser(newUser);
-
+				
+				view.register.setAllTxtEmpty();
+				view.getCardLayout().show(view.getContentPane(), "LOGIN");
+			}
+			// register view : if "back button" is clicked
+			else if (event.getSource() == view.register.back_btn) {
+				view.register.setAllTxtEmpty();
 				view.getCardLayout().show(view.getContentPane(), "LOGIN");
 			}
 			
 			// Class Search
+			// search view : if "search button" is clicked
 			else if(event.getSource() == view.search.searchBtn) {
-				if (!view.search.getSearchtxt().isEmpty())
+				if (!view.search.getSearchTxt().isEmpty()) {
+					// search for a title
 					if(view.search.isTitleSelected())
-						view.search.updateTable(DB.searchByTitle(view.search.getSearchtxt()));
+						view.search.updateTable(DB.searchByTitle(view.search.getSearchTxt()));
+					// search for an author
+					else if(view.search.isAuthorSelected())
+						view.search.updateTable(DB.searchByAuthor(view.search.getSearchTxt()));
+					// search for an ISBN
+					else if(view.search.isISBNSelected())
+						view.search.updateTable(DB.searchByISBN(view.search.getSearchTxt()));
+					// search for the title
+					else if(view.search.isSellerIDSelected())
+						view.search.updateTable(DB.searchBySellerID(view.search.getSearchTxt()));
+				}
 			}
 			else if(event.getSource() == view.search.purchaseBtn) {
-							
+				int searchedIndex = view.search.getTable().getSelectedRow();
+				int originIndex = DB.getRealIndex(searchedIndex);
+				System.out.println(searchedIndex);
+				System.out.println(originIndex);
+				
+				DB.getBookDB().get(originIndex).setSold(true);
+				DB.updateBookDB();
+				view.search.updateTable(DB.getBookDB());
 			}
 			else if(event.getSource() == view.search.logoutBtn) {
 				
@@ -73,6 +92,17 @@ public class Controller implements ActionListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+	}
+	
+	private void checkRegisterException() throws Exception {
+		if (view.register.getIDtxt().isEmpty() || view.register.getPWtxt().isEmpty()
+				|| view.register.getNametxt().isEmpty() || view.register.getEmailtxt().isEmpty()
+				|| !view.register.getPhoneNumtxt().matches("[0-9|-]+"))
+			throw new Exception("Invalid Input : All blanks must be written and enter only numbers and '-' for phone numbers.");
+		
+		for (int i = 0; i < DB.getAccountDB().size(); i++) {
+			if (view.register.getIDtxt().equals(DB.getAccountDB().get(i).getID()))
+				throw new Exception("Invalid Input : The same ID exists");
+		}
 	}
 }

@@ -12,7 +12,7 @@ public class Database {
 	private Vector<Book> bookDB = new Vector<Book>();
 	private Vector<GeneralUser> accountDB = new Vector<GeneralUser>();
 	private FileProcess file = new FileProcess();
-	private ArrayList<Integer> searchedIndex;
+	private ArrayList<Integer> searchedIndex = new ArrayList<Integer>();
 	
 	public Database() {
 		bookDB = file.readBookFile("DB_book.txt");
@@ -24,6 +24,7 @@ public class Database {
 					accountDB.get(j).addBook(bookDB.get(i));
 				}
 			}
+			searchedIndex.add(i);
 		}
 	}
 	
@@ -32,13 +33,14 @@ public class Database {
 		file.writeFile(newUser.getGeneralUserInfo(), "DB_account.txt");
 	}
 	
-	public Vector<Book> getBookDB(){
-		return bookDB;
+	public void addBook() {
+		
 	}
 	
-	public Vector<GeneralUser> getAccountDB(){
-		return accountDB;
+	public void updateBookDB() {
+		file.writeFile(bookDB, "DB_book.txt");
 	}
+	
 	
 	public Vector<Book> searchByTitle(String title) {
 		searchedIndex = new ArrayList<Integer>();
@@ -53,7 +55,7 @@ public class Database {
 	}
 	
 	public Vector<Book> searchByAuthor(String author) {
-		searchedIndex = null;
+		searchedIndex = new ArrayList<Integer>();
 		Vector<Book> bookList = new Vector<Book>();
 		for (int i = 0; i<bookDB.size();i++) {
 			if (bookDB.get(i).getAuthor().equals(author)) {
@@ -65,7 +67,7 @@ public class Database {
 	}
 	
 	public Vector<Book> searchByISBN(String isbn) {
-		searchedIndex = null;
+		searchedIndex = new ArrayList<Integer>();
 		Vector<Book> bookList = new Vector<Book>();
 		for (int i = 0; i<bookDB.size();i++) {
 			if (bookDB.get(i).getISBN().equals(isbn)) {
@@ -77,7 +79,7 @@ public class Database {
 	}
 	
 	public Vector<Book> searchBySellerID(String sellerID) {
-		searchedIndex = null;
+		searchedIndex = new ArrayList<Integer>();
 		Vector<Book> bookList = new Vector<Book>();
 		for (int i = 0; i<bookDB.size();i++) {
 			if (bookDB.get(i).getSellerID().equals(sellerID)) {
@@ -86,5 +88,15 @@ public class Database {
 			}
 		}
 		return bookList;
+	}
+	
+	public int getRealIndex(int searchedIndex) {
+		return this.searchedIndex.get(searchedIndex);
+	}
+	public Vector<Book> getBookDB(){
+		return bookDB;
+	}
+	public Vector<GeneralUser> getAccountDB(){
+		return accountDB;
 	}
 }

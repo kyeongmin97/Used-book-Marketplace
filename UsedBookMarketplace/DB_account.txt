@@ -1,6 +1,5 @@
-// ID : PW : Name : PhoneNum : Email
-pkm1015:1015pkm:park:01012341234:pkm1015@
-kio1015:1015kio:kyeong:01056785678:kio1015@
-hsuk0122:0122hsuk:suk:01011111111:hsuk0122@
-pth1015:pth1015:min:01099999999:pth1015@
-parkmin:1015:kyeong min:010-2637-1111:parkmin@
+pkm1015:1015pkm:pkm:010-1111-2222:pkm1015@
+hsuk0122:0122:suk:010-3333-4444:hsuk0122@
+pth0909:0909pth:pth:010-5555-6666:pth0909@
+pje0508:158eunlive:pje:010-9999-8888:pje0508@
+lee:lee:lee:010-1111-1111:lee

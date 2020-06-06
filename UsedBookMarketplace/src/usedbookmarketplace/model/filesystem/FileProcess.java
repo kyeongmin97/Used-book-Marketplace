@@ -23,6 +23,8 @@ public class FileProcess {
 
 				if (!line.startsWith("//") && !line.isEmpty()) {
 					String[] tokens = line.split(":");
+					if (tokens.length != 9)
+						throw new Exception("Invalid fileInput");
 					bookList.add(new Book(tokens));
 				}
 			}
@@ -31,8 +33,11 @@ public class FileProcess {
 			return bookList;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
 		}
+		return null;
 	}
 
 	// read an accountDB file
@@ -59,21 +64,35 @@ public class FileProcess {
 			return null;
 		}
 	}
-
-	// write all accounts to the file
-	public void writeFile(Vector<GeneralUser> accountDB, String fileName) {
+	
+	// write all accounts or books to the file
+	public <T> void writeFile(Vector<T> DB, String fileName) {
 		try {
 			File file = new File(fileName);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+			String[] info;
 
 			if (file.isFile() && file.canWrite()) {
 
-				for (int i = 0; i < accountDB.size() - 1; i++) {
-					String[] userInfo = accountDB.get(i).getGeneralUserInfo();
-					bw.write(userInfo[0] + ":" + userInfo[1] + ":" + userInfo[2] + ":" + userInfo[3] + ":" + userInfo[4]);
-					if (i != accountDB.size())
+				for (int i = 0; i < DB.size() - 1; i++) {
+					if (DB.get(0) instanceof Book)
+						info = ((Book) DB.get(i)).getBookInfo();
+					else
+						info = ((GeneralUser) DB.get(i)).getGeneralUserInfo();
+					
+					for (int j = 0; j < info.length - 1; j++)
+						bw.write(info[j] + ":");
+					bw.write(info[info.length - 1]);
+					
+					if (i != DB.size())
 						bw.newLine();
 				}
+				
+				info = ((Book) DB.get(DB.size() - 1)).getBookInfo();
+				for (int j = 0; j < info.length - 1; j++)
+					bw.write(info[j] + ":");
+				
+				bw.write(info[info.length - 1]);
 				bw.close();
 			}
 		} catch (IOException e) {

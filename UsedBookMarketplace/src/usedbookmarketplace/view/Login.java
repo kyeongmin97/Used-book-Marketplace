@@ -12,15 +12,11 @@ import javax.swing.*;
 public class Login extends JPanel {
 
 	public JButton login_btn, register_btn;
-	
 	private JLabel id_label, pw_label;
 	private JTextField id_txtf; 
 	private JPasswordField pw_pwf;
-	
-	private String id = "";	// remove?
-	private String pw = "";
 
-	//»ý¼ºÀÚ
+	// constructor
 	public Login() {		
 		id_label = new JLabel("ID :");
 		pw_label = new JLabel("PW :");
@@ -53,16 +49,13 @@ public class Login extends JPanel {
 		
 	}
 
+	// add the actionListener to buttons
 	public void addActionListeners(ActionListener action){
 		login_btn.addActionListener(action);
 		register_btn.addActionListener(action);
 	}
 	
-	public String getIDtxt() {
-		return id_txtf.getText();
-	}
-	
-	public String getPWtxt() {
-		return new String(pw_pwf.getPassword());
-	}
+	// getter, setter
+	public String getIDtxt() {	return id_txtf.getText();	}
+	public String getPWtxt() {	return new String(pw_pwf.getPassword());	}
 }
