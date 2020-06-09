@@ -1,5 +1,7 @@
 package usedbookmarketplace.model.data;
 
+import usedbookmarketplace.model.data.user.GeneralUser;
+
 public class Book {
 	private String title;
 	private String author;
@@ -9,6 +11,7 @@ public class Book {
 	private String price;
 	private String bookState;
 	private String sellerID;
+	private GeneralUser seller;	// 수정 필요할 수도,  구매 시 서로에게 이메일을 보낼 때 필요
 	private boolean isSold;
 
 	// constructor
@@ -52,6 +55,9 @@ public class Book {
 	}
 	
 	// getter, setter
+
+	public void setSeller(GeneralUser seller) {	this.seller = seller;	}
+	public GeneralUser getSeller()		{ return this.seller; }
 	public String getSellerID() 		{ return this.sellerID; }
 	public String getTitle() 			{ return title; }
 	public String getAuthor()			{ return author; }

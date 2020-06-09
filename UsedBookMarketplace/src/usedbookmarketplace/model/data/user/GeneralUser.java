@@ -23,7 +23,7 @@ public class GeneralUser extends User {
 		bookList.add(book);
 	}
 	
-	public String[] getGeneralUserInfo() {
+	public String[] getUserInfo() {
 		String[] userInfo = new String[5];
 		
 		userInfo[0] = id;
@@ -33,5 +33,9 @@ public class GeneralUser extends User {
 		userInfo[4] = email;
 		
 		return userInfo;
+	}
+	
+	public String getEmail() {
+		return email;
 	}
 }

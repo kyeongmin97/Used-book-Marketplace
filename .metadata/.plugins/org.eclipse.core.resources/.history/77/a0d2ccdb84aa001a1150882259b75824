@@ -1,0 +1,8 @@
+package usedbookmarketplace.view;
+
+public class MenuGeneralUser extends Menu {
+	public MenuGeneralUser(){
+		btn1.setText("Sell/Manage books");
+		btn2.setText("Buy books");
+	}
+}

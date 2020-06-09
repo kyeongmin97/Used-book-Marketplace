@@ -1,0 +1,11 @@
+package usedbookmarketplace.model.data.user;
+
+public class Admin extends User {
+	
+	public Admin(String[] tokens) {
+		super.id = tokens[0];
+		super.pw = tokens[1];
+	}
+	
+	
+}

@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import usedbookmarketplace.model.data.Book;
+import usedbookmarketplace.model.data.user.Admin;
 import usedbookmarketplace.model.data.user.GeneralUser;
+import usedbookmarketplace.model.data.user.User;
 import usedbookmarketplace.model.filesystem.FileProcess;
 
 public class Database {
 
 	private Vector<Book> bookDB = new Vector<Book>();
-	private Vector<GeneralUser> accountDB = new Vector<GeneralUser>();
+	private Vector<User> accountDB = new Vector<User>();
 	private FileProcess file = new FileProcess();
 	private ArrayList<Integer> searchedIndex = new ArrayList<Integer>();
 	
@@ -19,18 +21,19 @@ public class Database {
 		accountDB = file.readAccountFile("DB_account.txt");
 
 		for (int i = 0; i < bookDB.size(); i++) {
-			for (int j = 0; j < accountDB.size(); j++) {
+			for (int j = 0; j < accountDB.size() - 1; j++) {
 				if (bookDB.get(i).getSellerID().equals(accountDB.get(j).getID())) {
-					accountDB.get(j).addBook(bookDB.get(i));
+					((GeneralUser)accountDB.get(j)).addBook(bookDB.get(i));
+					bookDB.get(i).setSeller((GeneralUser)accountDB.get(j));
 				}
 			}
 			searchedIndex.add(i);
 		}
 	}
 	
-	public void addUser(GeneralUser newUser) {
+	public void addUser(User newUser) {
 		accountDB.add(newUser);
-		file.writeFile(newUser.getGeneralUserInfo(), "DB_account.txt");
+		file.writeFile(accountDB, "DB_account.txt");
 	}
 	
 	public void addBook() {
@@ -96,7 +99,7 @@ public class Database {
 	public Vector<Book> getBookDB(){
 		return bookDB;
 	}
-	public Vector<GeneralUser> getAccountDB(){
+	public Vector<User> getAccountDB(){
 		return accountDB;
 	}
 }

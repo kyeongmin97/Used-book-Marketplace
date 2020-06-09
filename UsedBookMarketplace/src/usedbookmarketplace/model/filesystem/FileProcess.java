@@ -5,8 +5,9 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import usedbookmarketplace.model.data.Book;
+import usedbookmarketplace.model.data.user.Admin;
 import usedbookmarketplace.model.data.user.GeneralUser;
-import usedbookmarketplace.model.database.Database;
+import usedbookmarketplace.model.data.user.User;
 
 public class FileProcess {
 
@@ -41,24 +42,25 @@ public class FileProcess {
 	}
 
 	// read an accountDB file
-	public Vector<GeneralUser> readAccountFile(String fileName) {
-		Vector<GeneralUser> accountList = new Vector<GeneralUser>();
+	public Vector<User> readAccountFile(String fileName) {
+		Vector<User> accountList = new Vector<User>();
 
 		try {
 			File file = new File(fileName);
 			Scanner scan = new Scanner(file);
-
+			
 			while (scan.hasNext()) {
 				String line = scan.nextLine();
-
-				if (!line.startsWith("//") && !line.isEmpty()) {
-					String[] tokens = line.split(":");
-					accountList.add(new GeneralUser(tokens));
-				}
+				
+				if (line.startsWith("admin:"))		// 파일 읽을 때 예외처리??
+					accountList.add(new Admin(line.split(":")));
+				else if (!line.isEmpty())
+					accountList.add(new GeneralUser(line.split(":")));
 			}
+			
 			scan.close();
-
 			return accountList;
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;
@@ -75,12 +77,12 @@ public class FileProcess {
 			if (file.isFile() && file.canWrite()) {
 
 				for (int i = 0; i < DB.size() - 1; i++) {
-					if (DB.get(0) instanceof Book)
+					if (DB.get(0) instanceof Book)					// write 하고자 하는 것이 책인 경우
 						info = ((Book) DB.get(i)).getBookInfo();
 					else
-						info = ((GeneralUser) DB.get(i)).getGeneralUserInfo();
+						info = ((User) DB.get(i)).getUserInfo();
 					
-					for (int j = 0; j < info.length - 1; j++)
+					for (int j = 0; j < info.length - 1; j++)		// write 정보.
 						bw.write(info[j] + ":");
 					bw.write(info[info.length - 1]);
 					
@@ -88,7 +90,11 @@ public class FileProcess {
 						bw.newLine();
 				}
 				
-				info = ((Book) DB.get(DB.size() - 1)).getBookInfo();
+				if (DB.get(0) instanceof Book)
+					info = ((Book) DB.get(DB.size() - 1)).getBookInfo();
+				else
+					info = ((User) DB.get(DB.size() - 1)).getUserInfo();
+				
 				for (int j = 0; j < info.length - 1; j++)
 					bw.write(info[j] + ":");
 				
@@ -100,19 +106,19 @@ public class FileProcess {
 		}
 	}
 
-	// write the added account to the file
-	public void writeFile(String[] info, String fileName) {
-		try {
-			PrintWriter pw = new PrintWriter(new FileWriter(fileName, true));
-
-			pw.write("\n");
-			for (int i = 0; i < info.length - 1; i++)
-				pw.write(info[i] + ":");
-			pw.write(info[info.length - 1]);
-
-			pw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	// write the added account to the file
+//	public void writeFile(String[] info, String fileName) {
+//		try {
+//			PrintWriter pw = new PrintWriter(new FileWriter(fileName, true));
+//
+//			pw.write("\n");
+//			for (int i = 0; i < info.length - 1; i++)
+//				pw.write(info[i] + ":");
+//			pw.write(info[info.length - 1]);
+//
+//			pw.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
