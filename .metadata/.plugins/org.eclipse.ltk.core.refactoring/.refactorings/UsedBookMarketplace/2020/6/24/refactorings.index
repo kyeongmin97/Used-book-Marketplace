@@ -1,3 +1,7 @@
 1591794934442	Rename type 'MenuAdmin'
 1591794957724	Rename type 'MenuGeneralUser'
 1591794967179	Rename type 'SearchGeneralUser'
+1591817029322	Delete element
+1591817032114	Delete element
+1591817501392	Encapsulate field 'isActivated'
+1591818302152	Rename type 'ManageAccount'

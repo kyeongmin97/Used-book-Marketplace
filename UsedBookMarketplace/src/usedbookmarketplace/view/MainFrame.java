@@ -1,9 +1,12 @@
 package usedbookmarketplace.view;
 
-import java.awt.*;
+import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 
 public class MainFrame extends JFrame{
 	
@@ -12,15 +15,20 @@ public class MainFrame extends JFrame{
 	public Login login = new Login();
 	public Menu menu = new Menu();
 	public Register register = new Register();
-	public Search_GeneralUser search;
+	public Search_GeneralUser search = new Search_GeneralUser();
+	public Search_Admin search_admin = new Search_Admin();
+	private Sale sale = new Sale();
+	private AccountPanel accountPanel = new AccountPanel();
 	
+
+
 	public MainFrame(){
 		
 		setLayout(card);
 		this.add("LOGIN", login);
 		this.add("REGISTER", register);
-		//this.add("SEARCH", search);
 		this.add("MENU", menu);
+		//this.add("SEARCH", search);
 		
 		setTitle("Used-book Marketplace");
 		setSize(800, 600);
@@ -33,6 +41,7 @@ public class MainFrame extends JFrame{
 	public void addActionListener(ActionListener action) {
 		login.addActionListeners(action);
 		register.addActionListeners(action);
+		//menu.addActionListeners(action);
 		//search.addActionListeners(action);
 		//...
 	}
@@ -42,18 +51,29 @@ public class MainFrame extends JFrame{
 		this.add("MENU", _menu);
 	}
 	
-	public void changeCardToSearch(Search search) {
-		this.add("SEARCH", search);
+	public void changeCardToSearch(Search _search) {
+		this.add("SEARCH", _search);
 		this.getCardLayout().show(this.getContentPane(), "SEARCH");
 	}
-	
-	public CardLayout getCardLayout(){
-		return this.card;
+	public void changeCardToSale(Sale _sale) {
+		this.add("SALE", _sale);
+		this.getCardLayout().show(this.getContentPane(), "SALE");
 	}
-	
+	public void changeCardToAccount(AccountPanel _account) {
+		this.add("ACCOUNT", _account);
+		this.getCardLayout().show(this.getContentPane(), "ACCOUNT");
+	}
+		
 	public void setMessageFrame(String msg) {
 		new messageFrame(msg);
 	}
+	
+	// getter, setter
+	public CardLayout getCardLayout()			{	return this.card;	}
+	public AccountPanel getAccountPanel()		{	return accountPanel;	}
+	public void setAccountPanel(AccountPanel manageAcc) {	this.accountPanel = manageAcc;	}
+	public Sale getSale() 				{	return sale;	}
+	public void setSale(Sale sale)		{	this.sale = sale;	}
 }
 
 class messageFrame extends JDialog {

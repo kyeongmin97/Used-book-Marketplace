@@ -8,6 +8,7 @@ public class GeneralUser extends User {
 	private String name;
 	private String phoneNum;
 	private String email;
+	private boolean isActivated;
 	
 	private Vector<Book> bookList = new Vector<Book>();
 	
@@ -35,7 +36,9 @@ public class GeneralUser extends User {
 		return userInfo;
 	}
 	
-	public String getEmail() {
-		return email;
-	}
+	// getter, setter
+	public String getEmail() 			{	return email;	}
+	public Vector<Book> getBookList()	{	return bookList;	}
+	public boolean isActivated() 		{	return isActivated;	}
+	public void setActivated(boolean isActivated) {	this.isActivated = isActivated;	}
 }

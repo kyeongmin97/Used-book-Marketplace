@@ -1,0 +1,168 @@
+package usedbookmarketplace.main;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import usedbookmarketplace.model.data.Book;
+import usedbookmarketplace.model.data.user.GeneralUser;
+import usedbookmarketplace.model.data.user.User;
+import usedbookmarketplace.model.database.Database;
+import usedbookmarketplace.view.MainFrame;
+import usedbookmarketplace.view.Menu_Admin;
+import usedbookmarketplace.view.Menu_GeneralUser;
+import usedbookmarketplace.view.Search;
+import usedbookmarketplace.view.Search_Admin;
+import usedbookmarketplace.view.Search_GeneralUser;
+
+public class Controller implements ActionListener {
+	Database DB;
+	MainFrame view;
+	User currentUser;
+
+	public Controller(Database db, MainFrame view) {
+		this.DB = db;
+		this.view = view;
+
+		view.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		try {
+			/************************  Login Panel  ************************/
+			// login view : if "login button" is clicked
+			if (event.getSource() == view.login.login_btn) {
+				String id = view.login.getIDtxt();
+				String pw = view.login.getPWtxt();
+
+				for (int i = 0; i < DB.getAccountDB().size(); i++) {
+					if (id.equals(DB.getAccountDB().get(i).getID())
+							&& pw.equals(DB.getAccountDB().get(i).getPW())) {
+						// administrator
+						if (i == DB.getAccountDB().size() - 1)
+							view.setMenu(new Menu_Admin());
+						// general user
+						else
+							view.setMenu(new Menu_GeneralUser());
+						view.menu.addActionListeners(this);
+						currentUser = DB.getAccountDB().get(i);
+						view.getCardLayout().show(view.getContentPane(), "MENU");
+						break;
+					}
+				}
+			}
+			// login view : if "register button" is clicked
+			else if (event.getSource() == view.login.register_btn) {
+				view.getCardLayout().show(view.getContentPane(), "REGISTER");
+			}
+			
+			
+			/************************  Menu Panel  ************************/
+			else if (event.getSource() == view.menu.getBtn1()) {
+				DB.initSearchIndex();
+				System.out.println("in 1");
+				if (currentUser instanceof GeneralUser) {
+					view.search = new Search_GeneralUser(DB.getBookDB());
+					view.search.addActionListeners(this);
+					view.changeCardToSearch(view.search); // DB를 view에서 안쓰기 위해
+				}
+				else {
+					view.search_admin = new Search_Admin(DB.getBookDB());
+					view.search_admin.addActionListeners(this);
+					view.changeCardToSearch(view.search_admin); // DB를 view에서 안쓰기 위해
+				}
+			}
+			
+			
+			/************************  Register Panel  ************************/
+			// register view : if "register button" is clicked
+			else if (event.getSource() == view.register.register_btn) {
+				checkRegisterException();
+
+				GeneralUser newUser = new GeneralUser(view.register.getAllTxt());
+				DB.addUser(newUser); // add a new user
+
+				view.register.setAllTxtEmpty();
+				view.getCardLayout().show(view.getContentPane(), "LOGIN");
+			}
+			// register view : if "back button" is clicked
+			else if (event.getSource() == view.register.back_btn) {
+				view.register.setAllTxtEmpty();
+				view.getCardLayout().show(view.getContentPane(), "LOGIN");
+			}
+
+			
+			/************************  Search Panel (administrator & general user)  ************************/
+			// search view : if "search button" is clicked
+			else if (event.getSource() == view.search.searchBtn) {
+				searchOn(view.search);
+			}
+			else if (event.getSource() == view.search_admin.searchBtn) {
+				searchOn(view.search_admin);
+			}
+			// search view : if "purchase button" is clicked
+			else if (event.getSource() == view.search.purchaseBtn) {
+				int searchedIndex = view.search.getTable().getSelectedRow(); 	// the index from the searched table
+				if (searchedIndex != -1) {
+					int originIndex = DB.getRealIndex(searchedIndex); 				// the actual index stored in the database(file)
+					
+					if (DB.getBookDB().get(originIndex).isSold()) {
+						view.setMessageFrame("Already Sold out");
+					}
+					else {
+						DB.getBookDB().get(originIndex).setSold(true); 					// change the state of a book to "Sold"
+						DB.updateBookDB(); 												// update DB
+						view.search.updateTable(DB.getBookDB()); 						// update view (table)
+						view.setMessageFrame("<html> Send E-mail <br>" + "buyer : " + ((GeneralUser)currentUser).getEmail() + "<br>"
+								+ "seller : " + DB.getBookDB().get(originIndex).getSeller().getEmail() + "</html>");
+					}
+				}
+				else
+					view.setMessageFrame("Please select a book");
+			}
+			//
+			else if (event.getSource() == view.search_admin.deleteBtn) {
+				
+			}			
+			
+			// search view : if "logout button" is clicked
+			else if (event.getSource() == view.search.logoutBtn || event.getSource() == view.search_admin.logoutBtn) {
+				currentUser = null;
+				view.getCardLayout().show(view.getContentPane(), "LOGIN");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void searchOn(Search searchView) {
+		if (!searchView.getSearchTxt().isEmpty()) {
+			// search for a title
+			if (searchView.isTitleSelected())
+				searchView.updateTable(DB.searchByTitle(searchView.getSearchTxt()));
+			// search for an author
+			else if (searchView.isAuthorSelected())
+				searchView.updateTable(DB.searchByAuthor(searchView.getSearchTxt()));
+			// search for an ISBN
+			else if (searchView.isISBNSelected())
+				searchView.updateTable(DB.searchByISBN(searchView.getSearchTxt()));
+			// search for the title
+			else if (searchView.isSellerIDSelected())
+				searchView.updateTable(DB.searchBySellerID(searchView.getSearchTxt()));
+		}
+	}
+	
+	private void checkRegisterException() throws Exception {
+		if (view.register.getIDtxt().isEmpty() || view.register.getPWtxt().isEmpty()
+				|| view.register.getNametxt().isEmpty() || view.register.getEmailtxt().isEmpty()
+				|| !view.register.getPhoneNumtxt().matches("[0-9|-]+"))
+			throw new Exception(
+					"Invalid Input : All blanks must be written and enter only numbers and '-' for phone numbers.");
+
+		for (int i = 0; i < DB.getAccountDB().size(); i++) {
+			if (view.register.getIDtxt().equals(DB.getAccountDB().get(i).getID()))
+				throw new Exception("Invalid Input : The same ID exists");
+		}
+	}
+}

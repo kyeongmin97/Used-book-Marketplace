@@ -75,30 +75,32 @@ public class FileProcess {
 			String[] info;
 
 			if (file.isFile() && file.canWrite()) {
-
-				for (int i = 0; i < DB.size() - 1; i++) {
-					if (DB.get(0) instanceof Book)					// write 하고자 하는 것이 책인 경우
-						info = ((Book) DB.get(i)).getBookInfo();
-					else
-						info = ((User) DB.get(i)).getUserInfo();
+				if (DB.size() != 0) {
+					for (int i = 0; i < DB.size() - 1; i++) {
+						if (DB.get(0) instanceof Book)					// write 하고자 하는 것이 책인 경우
+							info = ((Book) DB.get(i)).getBookInfo();
+						else
+							info = ((User) DB.get(i)).getUserInfo();
+						
+						for (int j = 0; j < info.length - 1; j++)		// write 정보.
+							bw.write(info[j] + ":");
+						bw.write(info[info.length - 1]);
+						
+						if (i != DB.size())
+							bw.newLine();
+					}
 					
-					for (int j = 0; j < info.length - 1; j++)		// write 정보.
+					if (DB.get(0) instanceof Book)
+						info = ((Book) DB.get(DB.size() - 1)).getBookInfo();
+					else
+						info = ((User) DB.get(DB.size() - 1)).getUserInfo();
+					
+					for (int j = 0; j < info.length - 1; j++)
 						bw.write(info[j] + ":");
 					bw.write(info[info.length - 1]);
-					
-					if (i != DB.size())
-						bw.newLine();
 				}
-				
-				if (DB.get(0) instanceof Book)
-					info = ((Book) DB.get(DB.size() - 1)).getBookInfo();
 				else
-					info = ((User) DB.get(DB.size() - 1)).getUserInfo();
-				
-				for (int j = 0; j < info.length - 1; j++)
-					bw.write(info[j] + ":");
-				
-				bw.write(info[info.length - 1]);
+					bw.write("");
 				bw.close();
 			}
 		} catch (IOException e) {

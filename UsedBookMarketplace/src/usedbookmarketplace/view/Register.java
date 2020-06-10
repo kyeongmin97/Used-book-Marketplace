@@ -73,7 +73,7 @@ public class Register extends JPanel {
 		back_btn.addActionListener(action);
 	}
 	
-	public void setAllTxtEmpty() {
+	public void setTxtEmpty() {
 		id_txtf.setText(null);
 		pw_pwf.setText(null);
 		name_txtf.setText(null);

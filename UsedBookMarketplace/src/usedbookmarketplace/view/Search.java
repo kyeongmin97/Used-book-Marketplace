@@ -2,7 +2,6 @@ package usedbookmarketplace.view;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Vector;
@@ -12,6 +11,7 @@ import usedbookmarketplace.model.data.Book;
 public class Search extends Table {
 
 	public JButton searchBtn = new JButton("Search");
+	public JButton logoutBtn = new JButton("Logout");
 //	public JButton purchaseBtn = new JButton("Purchase");
 //	public JButton logoutBtn = new JButton("Logout");
 
@@ -20,15 +20,6 @@ public class Search extends Table {
 	private JRadioButton authorRBtn = new JRadioButton("Author");
 	private JRadioButton isbnRBtn = new JRadioButton("ISBN");
 	private JRadioButton selleridRBtn = new JRadioButton("Seller ID");
-//
-//	private String[] colName = { "Title", "Author", "Publisher", "Publication Year", "ISBN", "Price", "Book State",
-//			"seller ID", "" };
-//	private DefaultTableModel model = new DefaultTableModel(null, colName) {
-//		public boolean isCellEditable(int r, int c) {
-//			return false;
-//		}
-//	};
-//	private JTable table = new JTable(model);
 
 	// constructor
 	public Search() {
@@ -39,7 +30,7 @@ public class Search extends Table {
 		super();
 
 		// setting table
-		String[] colName = { "Title", "Author", "Publisher", "Publication Year", "ISBN", "Price", "Book State", "seller ID", "" };
+		String[] colName = { "Title", "Author", "Publisher", "Publication Year", "ISBN", "Price", "Book State", "Seller ID", "Is Sold" };
 		model = new DefaultTableModel(null, colName) {
 			public boolean isCellEditable(int r, int c) {
 				return false;
@@ -68,6 +59,7 @@ public class Search extends Table {
 		radioBtnsPanel.add(selleridRBtn);
 
 		// setting button
+		btnsPanel.add(logoutBtn);
 		btnsPanel.add(searchBtn);
 		
 		// add components
@@ -77,7 +69,7 @@ public class Search extends Table {
 		add(scroll);
 	}
 
-
+	@Override
 	public <T> void updateTable(Vector<T> bookList) {
 		model = (DefaultTableModel) table.getModel();
 		model.setNumRows(0);
@@ -91,13 +83,11 @@ public class Search extends Table {
 		table.setModel(model);
 	}
 	
-	// add the actionListener to buttons
 	@Override
 	public void addActionListeners(ActionListener action) {
-		super.addActionListeners(action);
+		logoutBtn.addActionListener(action);
 		searchBtn.addActionListener(action);
-//		purchaseBtn.addActionListener(action);
-//		logoutBtn.addActionListener(action);
+
 	}
 
 //	 //update table
@@ -115,29 +105,9 @@ public class Search extends Table {
 //	}
 
 	// getter, setter
-	public String getSearchTxt() {
-		return searchtxt.getText();
-	}
-//	public JTable getTable() {
-//		return table;
-//	}
-//	public DefaultTableModel getModel() {
-//		return model;
-//	}
-
-	public boolean isTitleSelected() {
-		return titleRBtn.isSelected();
-	}
-
-	public boolean isAuthorSelected() {
-		return authorRBtn.isSelected();
-	}
-
-	public boolean isISBNSelected() {
-		return isbnRBtn.isSelected();
-	}
-
-	public boolean isSellerIDSelected() {
-		return selleridRBtn.isSelected();
-	}
+	public String getSearchTxt() 		{	return searchtxt.getText();		}
+	public boolean isTitleSelected() 	{	return titleRBtn.isSelected();	}
+	public boolean isAuthorSelected() 	{	return authorRBtn.isSelected();	}
+	public boolean isISBNSelected() 	{	return isbnRBtn.isSelected();	}
+	public boolean isSellerIDSelected() {	return selleridRBtn.isSelected();	}
 }

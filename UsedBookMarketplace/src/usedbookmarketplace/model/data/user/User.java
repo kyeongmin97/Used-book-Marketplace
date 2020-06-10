@@ -1,8 +1,7 @@
 package usedbookmarketplace.model.data.user;
 
-import usedbookmarketplace.model.data.Book;
-
 public abstract class User {
+	
 	protected String id;
 	protected String pw;
 	

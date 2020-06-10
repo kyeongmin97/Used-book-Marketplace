@@ -16,10 +16,7 @@ public class Search_GeneralUser extends Search {
 	}
 	
 	public Search_GeneralUser(Vector<Book> bookList) {
-		super(bookList);
-		
-//		table.getColumn("Publication Year").setPreferredWidth(100);
-		
+		super(bookList);		
 		btnsPanel.add(purchaseBtn);
 	}
 	

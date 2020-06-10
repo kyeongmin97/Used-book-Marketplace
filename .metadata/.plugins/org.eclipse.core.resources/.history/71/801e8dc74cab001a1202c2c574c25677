@@ -1,0 +1,13 @@
+package usedbookmarketplace.view;
+
+import java.util.Vector;
+
+public class Sale extends Table{
+
+	@Override
+	public <T> void updateTable(Vector<T> data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

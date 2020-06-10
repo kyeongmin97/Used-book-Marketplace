@@ -55,6 +55,11 @@ public class Login extends JPanel {
 		register_btn.addActionListener(action);
 	}
 	
+	public void setTxtEmpty() {
+		id_txtf.setText("");
+		pw_pwf.setText("");
+	}
+	
 	// getter, setter
 	public String getIDtxt() {	return id_txtf.getText();	}
 	public String getPWtxt() {	return new String(pw_pwf.getPassword());	}
