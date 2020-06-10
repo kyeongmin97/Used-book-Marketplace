@@ -7,22 +7,19 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private CardLayout card = new CardLayout();
 	public Login login = new Login();
 	public Menu menu = new Menu();
 	public Register register = new Register();
-	public Search search = new Search();
+	public Search_GeneralUser search;
 	
 	public MainFrame(){
 		
 		setLayout(card);
 		this.add("LOGIN", login);
 		this.add("REGISTER", register);
-		this.add("SEARCH", search);
+		//this.add("SEARCH", search);
 		this.add("MENU", menu);
 		
 		setTitle("Used-book Marketplace");
@@ -36,7 +33,7 @@ public class MainFrame extends JFrame{
 	public void addActionListener(ActionListener action) {
 		login.addActionListeners(action);
 		register.addActionListeners(action);
-		search.addActionListeners(action);
+		//search.addActionListeners(action);
 		//...
 	}
 	

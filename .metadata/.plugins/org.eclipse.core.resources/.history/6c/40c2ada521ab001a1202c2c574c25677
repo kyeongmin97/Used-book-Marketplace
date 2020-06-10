@@ -1,0 +1,54 @@
+package usedbookmarketplace.view;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import usedbookmarketplace.model.data.Book;
+
+public abstract class Table extends JPanel {
+	protected String[] colName;
+	protected DefaultTableModel model = new DefaultTableModel(null, colName) {
+		public boolean isCellEditable(int r, int c) {
+			return false;
+		}
+	};
+	protected JTable table = new JTable(model);
+
+	protected JPanel btnsPanel = new JPanel();
+	public JButton logoutBtn = new JButton("Logout");
+	
+	public Table(Vector<Book> bookList) {
+		btnsPanel.add(logoutBtn);
+		
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setPreferredSize(new Dimension(640, 480));
+
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		
+		add(btnsPanel, BorderLayout.CENTER);
+		add(scroll, BorderLayout.SOUTH);
+	}
+	
+	// update table
+	public abstract <T> void updateTable(Vector<T> data);
+	
+	public void addActionListeners(ActionListener action) {
+		logoutBtn.addActionListener(action);
+	}
+	
+	public JTable getTable() {
+		return table;
+	}
+	public DefaultTableModel getModel() {
+		return model;
+	}
+}

@@ -31,6 +31,12 @@ public class Database {
 		}
 	}
 	
+	public void initSearchIndex() {
+		searchedIndex = new ArrayList<Integer>();
+		for (int i = 0; i < bookDB.size(); i++)
+			searchedIndex.add(i);
+	}
+	
 	public void addUser(User newUser) {
 		accountDB.add(newUser);
 		file.writeFile(accountDB, "DB_account.txt");

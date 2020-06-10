@@ -1,0 +1,46 @@
+package usedbookmarketplace.view;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.util.Vector;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import usedbookmarketplace.model.data.Book;
+
+public class Table extends JPanel {
+	private String[] colName;
+	private DefaultTableModel model = new DefaultTableModel(null, colName) {
+		public boolean isCellEditable(int r, int c) {
+			return false;
+		}
+	};
+	private JTable table = new JTable(model);
+	
+	JPanel btnsPanel = new JPanel();
+	
+	public Table() {
+		JScrollPane scroll = new JScrollPane(table);
+		scroll.setPreferredSize(new Dimension(640, 480));
+		
+
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		
+		add(btnsPanel, BorderLayout.CENTER);
+		add(scroll, BorderLayout.SOUTH);
+	}
+	
+	// update table
+	public abstract void updateTable(Vector<Book> bookList);
+	
+	public JTable getTable() {
+		return table;
+	}
+	public DefaultTableModel getModel() {
+		return model;
+	}
+}

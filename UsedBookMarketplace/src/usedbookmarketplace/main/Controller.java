@@ -2,13 +2,15 @@ package usedbookmarketplace.main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import usedbookmarketplace.model.data.user.GeneralUser;
 import usedbookmarketplace.model.data.user.User;
 import usedbookmarketplace.model.database.Database;
 import usedbookmarketplace.view.MainFrame;
-import usedbookmarketplace.view.MenuGeneralUser;
+import usedbookmarketplace.view.Menu_GeneralUser;
 import usedbookmarketplace.view.Search;
+import usedbookmarketplace.view.Search_GeneralUser;
 
 public class Controller implements ActionListener {
 	Database DB;
@@ -32,13 +34,14 @@ public class Controller implements ActionListener {
 				String pw = view.login.getPWtxt();
 
 				if (id.equals("1") && pw.equals("1")) {
+					DB.initSearchIndex();// menu에 넣어야함
 					currentUser = DB.getAccountDB().get(0); // temp
-					view.search = new Search(DB.getBookDB());
+					view.search = new Search_GeneralUser(DB.getBookDB());
 					view.search.addActionListeners(this);
 					view.changeCardToSearch(view.search); // DB를 view에서 안쓰기 위해
 				}
 				else {
-					view.setMenu(new MenuGeneralUser());
+					view.setMenu(new Menu_GeneralUser());
 					view.getCardLayout().show(view.getContentPane(), "MENU");
 				}
 			}
@@ -102,7 +105,7 @@ public class Controller implements ActionListener {
 			else if (event.getSource() == view.search.logoutBtn) {
 				view.getCardLayout().show(view.getContentPane(), "LOGIN");
 			}
-			else if () {
+			else if (event.getSource() == view.search.logoutBtn) {
 				//해야할 것 : admin추가했음. 로그인 부분 수정
 			}
 			
