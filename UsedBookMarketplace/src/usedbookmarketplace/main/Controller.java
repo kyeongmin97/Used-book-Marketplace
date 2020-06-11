@@ -113,26 +113,24 @@ public class Controller implements ActionListener {
 					int originIndex = DB.getRealIndex(searchedIndex); 				// the actual index stored in the database(file)
 					
 					if (DB.getBookDB().get(originIndex).isSold()) {
-						view.setMessageFrame("Already Sold out");
+						view.showMessageFrame("Already Sold out");
 					}
 					else {
 						DB.getBookDB().get(originIndex).setSold(true); 					// change the state of a book to "Sold"
 						DB.updateBookDB(); 												// update DB
 						view.search.updateTable(DB.getBookDB()); 						// update view (table)
-						view.setMessageFrame("<html> Send E-mail <br>" + "buyer : " + ((GeneralUser)currentUser).getEmail() + "<br>"
+						view.showMessageFrame("<html> Send E-mail <br>" + "buyer : " + ((GeneralUser)currentUser).getEmail() + "<br>"
 								+ "seller : " + DB.getBookDB().get(originIndex).getSeller().getEmail() + "</html>");
 					}
 				}
 				else
-					view.setMessageFrame("Please select a book");
+					view.showMessageFrame("Please select a book");
 			}
 			
 			else if (event.getSource() == view.search_admin.deleteBtn) {			// SEARCH VIEW : if "delete button" is clicked
-
-				System.out.println("in 1");
 				int searchedIndex = view.search_admin.getTable().getSelectedRow(); 	// the index from the searched table
 				if (searchedIndex == -1)
-					view.setMessageFrame("Please select a book");					// if you don't select a book, show you a message
+					view.showMessageFrame("Please select a book");					// if you don't select a book, show you a message
 				DB.removeBook(view.search_admin.getTable().getSelectedRow());		// remove the selected book from the database
 				view.search_admin.updateTable(DB.getBookDB());						// update view (table)
 			}			
@@ -142,6 +140,18 @@ public class Controller implements ActionListener {
 				currentUser = null;
 				view.getCardLayout().show(view.getContentPane(), "LOGIN");			// change into login card
 			}
+			
+			/************************  SALE Panel (general user)  ************************/
+			else if (event.getSource() == view.getSale().getRegisterBtn()) {					// SALE VIEW : if "register button" is clicked
+				int searchedIndex = view.getSale().getTable().getSelectedRow(); 		// the index from the searched table
+				if (searchedIndex != -1) {
+					int originIndex = DB.getRealIndex(searchedIndex); 
+					view.getSale().showModifyDialog(DB.getBookDB().get(originIndex));
+				}
+				else
+					view.showMessageFrame("Please select a book");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

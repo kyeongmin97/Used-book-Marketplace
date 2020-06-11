@@ -63,8 +63,8 @@ public class MainFrame extends JFrame{
 		this.add("ACCOUNT", _account);
 		this.getCardLayout().show(this.getContentPane(), "ACCOUNT");
 	}
-		
-	public void setMessageFrame(String msg) {
+	
+	public void showMessageFrame(String msg) {
 		new messageFrame(msg);
 	}
 	
@@ -76,6 +76,7 @@ public class MainFrame extends JFrame{
 	public void setSale(Sale sale)		{	this.sale = sale;	}
 }
 
+
 class messageFrame extends JDialog {
 	private static final long serialVersionUID = 1L;
 	JLabel label = new JLabel("");
@@ -85,7 +86,7 @@ class messageFrame extends JDialog {
             label.setText(str.toString());
             label.setHorizontalAlignment(JLabel.CENTER);
             
-            this.setSize(360,240);
+            this.setSize(360,120);
             setLocation(300, 200);
             this.setModal(true);
             this.setVisible(true);

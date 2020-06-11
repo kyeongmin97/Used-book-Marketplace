@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="writeFile"/>
+		<item key="selection" value="getTable"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="getTable"/>
+			<item value="updatebookDB"/>
+			<item value="updatebook&apos;DB"/>
+			<item value="updateDB"/>
+			<item value="view.search"/>
+			<item value="getmodel"/>
+			<item value="get"/>
+			<item value="getModel"/>
+			<item value="if (id.equals(DB.getAccountDB().get(DB.getAccountDB().size()-1).getID()) &amp;&amp; pw.equals(DB.getAccountDB().get(DB.getAccountDB().size()-1).getPW())) {"/>
+			<item value="setLayout"/>
 			<item value="writeFile"/>
 			<item value="search"/>
 			<item value="view.add"/>
 			<item value="add."/>
 			<item value="isSellerIDSelected"/>
-			<item value="card"/>
-			<item value="read"/>
-			<item value="read\"/>
-			<item value="file"/>
-			<item value="GetIdandPw"/>
-			<item value="action"/>
-			<item value="setLayout"/>
-			<item value="password"/>
 		</list>
 		<list key="replacehistory">
+			<item value="search"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

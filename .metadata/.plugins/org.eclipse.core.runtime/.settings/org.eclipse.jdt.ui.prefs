@@ -1,3 +1,5 @@
+MemberFilterActionGroup.HierarchyMethodView.1=true
+breadcrumb.org.eclipse.jdt.ui.JavaPerspective=true
 content_assist_completion_replacement_background=200,200,0
 content_assist_completion_replacement_foreground=200,0,0
 content_assist_disabled_computers=org.eclipse.jdt.ui.textProposalCategory\u0000org.eclipse.jdt.ui.javaNoTypeProposalCategory\u0000org.eclipse.jdt.ui.javaTypeProposalCategory\u0000org.eclipse.jdt.ui.javaChainProposalCategory\u0000

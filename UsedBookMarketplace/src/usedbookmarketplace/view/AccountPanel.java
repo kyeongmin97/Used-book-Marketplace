@@ -9,10 +9,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import usedbookmarketplace.model.data.Book;
 import usedbookmarketplace.model.data.user.User;
 
 public class AccountPanel extends Table {
+	
 	private JButton changeStateBtn = new JButton("Change User State");
 	private JButton deleteBtn = new JButton("Delete User");
 	private JButton logoutBtn = new JButton("Logout");

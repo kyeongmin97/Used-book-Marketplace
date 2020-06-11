@@ -17,14 +17,23 @@
     <fullyQualifiedTypeName name="usedbookmarketplace.view.Search"/>
     <fullyQualifiedTypeName name="java.awt.GridLayout"/>
     <fullyQualifiedTypeName name="java.util.Vector"/>
-    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.Book"/>
     <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
     <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.data.user.GeneralUser"/>
-    <fullyQualifiedTypeName name="javax.swing.JButton"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.view.MenuGeneralUser"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.data.user.Admin"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.Search_GeneralUser"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.Menu_Admin"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.Search_Admin"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.Book"/>
+    <fullyQualifiedTypeName name="javax.swing.JButton"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.Sale"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="javax.swing.JDialog"/>
+    <fullyQualifiedTypeName name="javax.swing.JLabel"/>
+    <fullyQualifiedTypeName name="java.awt.CardLayout"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.data.user.User"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.AccountPanel"/>
 </qualifiedTypeNameHistroy>
