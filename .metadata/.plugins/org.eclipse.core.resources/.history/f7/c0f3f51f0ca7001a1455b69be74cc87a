@@ -1,6 +1,0 @@
-package usedbookmarketplace.model.data.user;
-
-public class Admin {
-	private string id;
-	
-}

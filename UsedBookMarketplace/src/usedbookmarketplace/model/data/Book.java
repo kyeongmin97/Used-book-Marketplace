@@ -56,7 +56,7 @@ public class Book {
 	
 	// getter, setter
 
-	public void setSeller(GeneralUser seller) {	this.seller = seller;	}
+	
 	public GeneralUser getSeller()		{ return this.seller; }
 	public String getSellerID() 		{ return this.sellerID; }
 	public String getTitle() 			{ return title; }
@@ -66,7 +66,14 @@ public class Book {
 	public String getISBN()				{ return ISBN; }
 	public String getPrice() 			{ return price; }
 	public String getBookState() 		{ return bookState; }
-
 	public boolean isSold() 			{ return isSold; }
-	public void setSold(boolean isSold) { this.isSold = isSold;	}
+
+	public void setSeller(GeneralUser seller) 	{ this.seller = seller;	}
+	public void setTitle(String title) 			{ this.title = title;	}
+	public void setAuthor(String author) 		{ this.author = author;	}
+	public void setPublisher(String publisher) 	{ this.publisher = publisher;	}
+	public void setPublicationYear(String publicationYear) {	this.publicationYear = publicationYear;	}
+	public void setPrice(String price) 			{ this.price = price;	}
+	public void setBookState(String bookState) 	{ this.bookState = bookState;	}
+	public void setSold(boolean isSold) 		{ this.isSold = isSold;	}
 }

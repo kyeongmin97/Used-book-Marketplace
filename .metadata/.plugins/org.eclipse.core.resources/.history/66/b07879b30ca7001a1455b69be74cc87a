@@ -1,6 +1,0 @@
-package usedbookmarketplace.model.data.user;
-
-public abstract class User {
-	private String id;
-	
-}

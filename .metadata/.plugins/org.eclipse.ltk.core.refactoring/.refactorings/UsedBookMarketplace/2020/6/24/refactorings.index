@@ -5,3 +5,42 @@
 1591817032114	Delete element
 1591817501392	Encapsulate field 'isActivated'
 1591818302152	Rename type 'ManageAccount'
+1591934383838	Rename type 'MainFrame'
+1591939578362	Rename type 'Login'
+1591939593381	Rename type 'AccountPanel'
+1591939627867	Rename type 'Search'
+1591939633864	Rename type 'Table'
+1591939642733	Rename type 'Sale'
+1591939647630	Rename type 'Register'
+1591939652068	Rename type 'Menu'
+1591939675435	Rename type 'Menu_Admin'
+1591939681812	Rename type 'Menu_GeneralUser'
+1591939696624	Rename type 'Search_Admin'
+1591939703356	Rename type 'Search_GeneralUser'
+1591939718314	Rename type 'MenuUI_GeneralUser'
+1591939726850	Rename type 'SearchUI_GeneralUser'
+1591959909446	Move compilation unit
+1591959940586	Rename package 'usedbookmarketplace.main'
+1591959979260	Delete element
+1591969769776	Encapsulate field 'manageDialog'
+1591971104664	Move compilation units
+1591971206058	Move compilation unit
+1591971361504	Rename type 'SaleUI_Modify'
+1591971367206	Rename type 'SaleUI_Register'
+1591971574670	Move compilation units
+1591971591433	Delete element
+1591979227158	Encapsulate field 'modifyIndex'
+1591981812854	Delete element
+1591981918936	Delete element
+1591981951318	Delete element
+1591990743429	Rename type 'SaleUI'
+1591990757985	Rename type 'SearchUI'
+1591990836213	Rename type 'SearchUI_General'
+1591990947141	Rename type 'SaleUI_RegisterDialog'
+1591990961522	Rename type 'SaleUI_ModifyDialog'
+1591991063129	Rename type 'SaleUI_ManageDialog'
+1591991092133	Rename type 'RegisterUI'
+1591991268802	Rename type 'ManageBookPanel'
+1591991774575	Rename type 'AccountUI'
+1591991797651	Rename type 'SearchBookUI_GU'
+1591994448503	Rename type 'SearchUI_Admin'

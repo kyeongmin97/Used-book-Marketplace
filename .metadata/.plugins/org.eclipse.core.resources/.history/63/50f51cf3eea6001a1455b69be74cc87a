@@ -1,9 +1,0 @@
-package UsedBookMarketplace;
-
-import javax.swing.*;
-
-public class Search extends JPanel {
-	public Search() {
-		
-	}
-}

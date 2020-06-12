@@ -5,3 +5,4 @@ pth0909:0909pth:pth:010-5555-6666:pth0909@
 pje0508:158eunlive:pje:010-9999-8888:pje0508@
 lee:lee:lee:010-1111-1111:lee
 admin:nayana
+ljj0000:1:lee:01011112222:ljj0000@naver.com

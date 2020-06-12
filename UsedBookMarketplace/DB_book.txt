@@ -1,15 +1,12 @@
-Book1:auth1:house:2005:1:20000:0:pkm1015:Not Sold
-Book2:auth2:visang:2010:2:44000:1:pth0909:Not Sold
-Book3:auth3:future:1999:3:14200:2:hsuk0122:Not Sold
-Book1:auth1:house:2005:1:20000:0:pkm1015:Not Sold
-Book2:auth2:visang:2010:2:44000:1:pth0909:Not Sold
-Book3:auth3:future:1999:3:14200:2:1:Not Sold
 Book1:auth1:house:2005:1:20000:0:pkm1015:Sold
-Book2:auth2:visang:2010:2:44000:1:pth0909:Not Sold
-Book3:auth3:future:1999:3:14200:2:hsuk0122:Not Sold
-Book1:auth1:house:2005:1:20000:0:pkm1015:Not Sold
-Book2:auth2:visang:2010:2:44000:1:1:Sold
-Book3:auth3:future:1999:3:14200:2:hsuk0122:Not Sold
-Book1:auth1:house:2005:1:20000:0:1:Not Sold
-Book2:auth2:visang:2010:2:44000:1:pth0909:Not Sold
-Book3:auth3:future:1999:3:14200:2:hsuk0122:Not Sold
+Book2:auth2:visang:2010:2:44000:1:pth0909:Sold
+Book3:auth3:future:1999:3:14200:2:hsuk0122:Sold
+Book1:auth1:house:2005:1:20000:0:pkm1015:Sold
+Book2:auth2:visang:2010:2:44000:1:pth0909:Sold
+Book3:auth3:future:1999:3:14200:2:1:Sold
+Book2:auth2:visang:2010:2:44000:1:pth0909:Sold
+Book1:auth1:house:2005:1:20000:0:pkm1015:Sold
+Book2:auth2:visang:2010:2:44000:1:1:Not Sold
+Book3:auth3:future:1999:3:14200:2:hsuk0122:Sold
+Book1:auth1:house:2005:1:20000:0:1:Sold
+Book2:auth2:visang:2010:2:44000:1:pth0909:Sold
