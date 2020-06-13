@@ -15,10 +15,18 @@ public class Database implements Observable {
 	private ArrayList<Observer> observers = new ArrayList<>();
 	private Vector<Book> bookDB = new Vector<Book>();
 	private Vector<User> accountDB = new Vector<User>();
-	private Vector<Integer> searchedIndex = new Vector<Integer>();
+	private Vector<Integer> searchedIndex = new Vector<Integer>();			// the index from the searched table
 	private FileProcess file = new FileProcess();
-	private SearchStrategy searchFilter;
+	private User currentUser;
 
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+	
 	public Database() {
 		bookDB = file.readBookFile("DB_book.txt");
 		accountDB = file.readAccountFile("DB_account.txt");
@@ -52,73 +60,102 @@ public class Database implements Observable {
 		observers.remove(index);
 	}
 
-	public User authenticate(String id, String pw) throws Exception {
-		for (int i = 0; i < accountDB.size(); i++) {	//DB·Î »©±â, checkInvalidInput
-			if (id.equals(accountDB.get(i).getID())	&& pw.equals(accountDB.get(i).getPW()))
-				return accountDB.get(i);
+	public boolean authenticate(String id, String pw) throws Exception {
+		int i;
+		for (i = 0; i < accountDB.size(); i++) {	//DB·Î »©±â, checkInvalidInput
+			if (id.equals(accountDB.get(i).getID())	&& pw.equals(accountDB.get(i).getPW())) {
+				currentUser = accountDB.get(i);
+				return true;
+			}
 		}
 		throw new Exception("The ID or PW is not valid");
 	}
 	
-	public void registerUser(String[] userInfo) throws Exception {
-		if (userInfo[0].isEmpty() || userInfo[1].isEmpty() || userInfo[2].isEmpty() || !userInfo[3].matches("[0-9|-]+") || userInfo[4].isEmpty())
-			throw new Exception("Invalid Input : All blanks must be written and enter only numbers and '-' for phone numbers.");
-
-		for (int i = 0; i < accountDB.size(); i++) {
-			if (userInfo[0].equals(accountDB.get(i).getID()))
-				throw new Exception("Invalid Input : The same ID exists");
-		}
-		
+	public void registerUser(String[] userInfo) {
 		GeneralUser newUser = new GeneralUser(userInfo);		
 		accountDB.add(newUser);
 		
 		file.writeFile(accountDB, "DB_account.txt");
 	}
 	
-	public void searchBook(String searchWord) {
-		notifyObserver(searchFilter.searchBook(searchWord, this));		
+	public void searchBook(String searchWord, SearchStrategy searchFilter) {
+		notifyObserver(searchFilter.searchBook(searchWord, this));	
 	}
 	
-	public void purchaseBook(int searchedIndex) throws Exception {	// searchedIndex = the index from the searched table	
-		int originIndex = getRealIndex(searchedIndex); 				// the actual index stored in the database(file)
+	public void purchaseBook(int originIndex) {		
+		bookDB.get(originIndex).setSold(true); 					// change the state of a book to "Sold"
+		file.writeFile(bookDB, "DB_book.txt");					// update file
+		notifyObserver(bookDB); 								// update view (table)
 		
-		for (Integer s : this.searchedIndex)
-			System.out.println(s);
-		
-		if (bookDB.get(originIndex).isSold()) {
-			throw new Exception("Already Sold out");
-		}
-		else {
-			bookDB.get(originIndex).setSold(true); 					// change the state of a book to "Sold"
-			file.writeFile(bookDB, "DB_book.txt");					// update file
-			notifyObserver(bookDB); 								// update view (table)
-		}
 	}
 	
-	public void deleteBook(int searchedIndex) throws Exception {					// searchedIndex = the index from the searched table
-		int originIndex = getRealIndex(searchedIndex); 
-
+	public void deleteBook_admin(int selectedIndex) {
+		int originIndex = getRealIndex(selectedIndex);
+		
+		bookDB.get(originIndex).getSeller().getBookList().remove(bookDB.get(originIndex));	// remove the selected book from the user book list
 		bookDB.remove(originIndex);								// remove the selected book from the database
 		file.writeFile(bookDB, "DB_book.txt");					// update file
 		notifyObserver(bookDB); 								// update view (table)
 	}	
 	
-	public void modifyBook(String[] bookInfo, int originIndex) {
-		bookDB.get(originIndex).setTitle(bookInfo[0]);
-		bookDB.get(originIndex).setAuthor(bookInfo[1]);
-		bookDB.get(originIndex).setPublisher(bookInfo[2]);
-		bookDB.get(originIndex).setPublicationYear(bookInfo[3]);
-		bookDB.get(originIndex).setPrice(bookInfo[4]);
-		bookDB.get(originIndex).setBookState(bookInfo[5]);
+	public void deleteBook_user(int selectedIndex) {
+		bookDB.remove(((GeneralUser)currentUser).getBookList().get(selectedIndex));	// remove the selected book from the database
+		((GeneralUser)currentUser).getBookList().remove(selectedIndex);				// remove the selected book from the user book list
+		file.writeFile(bookDB, "DB_book.txt");							// update file
+		notifyObserver(((GeneralUser)currentUser).getBookList()); 						// update view (table)
+	}	
+	public void registerBook(String[] bookInfo) {
+		Book newBook = new Book(bookInfo);
+		newBook.setSold(false);
+		newBook.setSeller((GeneralUser)currentUser);
 		
-		file.writeFile(bookDB, "DB_book.txt");					// update file
-		notifyObserver(bookDB); 								// update view (table)
+		((GeneralUser)currentUser).addBook(newBook);
+		bookDB.add(newBook);
+		
+		file.writeFile(bookDB, "DB_book.txt");
+		notifyObserver(((GeneralUser)currentUser).getBookList());
+	}
+	public void modifyBook(String[] bookInfo, int selectedIndex) {
+		Book book = ((GeneralUser)currentUser).getBookList().get(selectedIndex);
+		
+		book.setTitle(bookInfo[0]);
+		book.setAuthor(bookInfo[1]);
+		book.setPublisher(bookInfo[2]);
+		book.setPublicationYear(bookInfo[3]);
+		book.setISBN(bookInfo[4]);
+		book.setPrice(bookInfo[5]);
+		book.setBookState(bookInfo[6]);
+		
+		file.writeFile(bookDB, "DB_book.txt");								// update file
+		notifyObserver(((GeneralUser)currentUser).getBookList()); 			// update view (table)
 	}
 	
-	public int getRealIndex(int _searchedIndex) throws Exception {
-		if (_searchedIndex == -1) 									// if you don't select a book or account, show you a message
-			throw new Exception("Please select from the table!");
-		return searchedIndex.get(_searchedIndex);
+	public void changeUserState(int selectedIndex) {
+		GeneralUser user = (GeneralUser) accountDB.get(selectedIndex);
+		if (user.isActivated())
+			user.setActivated(false);
+		else
+			user.setActivated(true);
+		
+		file.writeFile(accountDB, "DB_account.txt");		// update file
+		notifyObserver(accountDB); 							// update view (table)
+	}
+	
+	public void deleteAccount(int selectedIndex) {
+		Vector<Book> bookList = ((GeneralUser)accountDB.get(selectedIndex)).getBookList();
+		
+		for (int i = 0; i < bookList.size(); i++) {
+			bookDB.remove(bookList.get(i));
+		}
+		accountDB.remove(selectedIndex);
+		
+		file.writeFile(bookDB, "DB_book.txt");				// update file
+		file.writeFile(accountDB, "DB_account.txt");		// update file
+		notifyObserver(accountDB); 							// update view (table)
+	}
+	
+	public int getRealIndex(int selectedIndex) {
+		return searchedIndex.get(selectedIndex);
 	}
 	
 	public void initSearchIndex() {
@@ -132,12 +169,6 @@ public class Database implements Observable {
 	}
 	public Vector<Integer> getSearchedIndex() {
 		return searchedIndex;
-	}
-	public void setSearchFilter(SearchStrategy _searchFilter) {
-		searchFilter = _searchFilter;
-	}
-	public SearchStrategy getSearchFilter() {
-		return searchFilter;
 	}
 	public Vector<Book> getBookDB(){
 		return bookDB;

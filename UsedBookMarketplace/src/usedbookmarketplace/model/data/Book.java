@@ -23,12 +23,14 @@ public class Book {
 		ISBN = bookInfo[4];
 		price = bookInfo[5];
 		bookState = bookInfo[6];	 // excellent, good, fair
-		sellerID = bookInfo[7];
 		
-		if (bookInfo[8].equals("Sold"))
-			isSold = true;
-		else
-			isSold = false;
+		if (bookInfo.length == 9) {
+			sellerID = bookInfo[7];
+			if (bookInfo[8].equals("Sold"))
+				isSold = true;
+			else
+				isSold = false;
+		}
 	}
 
 // need to change a condition
@@ -73,6 +75,7 @@ public class Book {
 	public void setAuthor(String author) 		{ this.author = author;	}
 	public void setPublisher(String publisher) 	{ this.publisher = publisher;	}
 	public void setPublicationYear(String publicationYear) {	this.publicationYear = publicationYear;	}
+	public void setISBN(String ISBN)			{ this.ISBN = ISBN;	}
 	public void setPrice(String price) 			{ this.price = price;	}
 	public void setBookState(String bookState) 	{ this.bookState = bookState;	}
 	public void setSold(boolean isSold) 		{ this.isSold = isSold;	}

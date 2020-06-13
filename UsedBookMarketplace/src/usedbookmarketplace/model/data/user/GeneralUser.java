@@ -15,9 +15,10 @@ public class GeneralUser extends User {
 	public GeneralUser(String[] tokens) {
 		super.id = tokens[0];
 		super.pw = tokens[1];
-		this.name = tokens[2];
-		this.phoneNum = tokens[3];
-		this.email = tokens[4];
+		name = tokens[2];
+		phoneNum = tokens[3];
+		email = tokens[4];
+		isActivated = true;
 	}
 	
 	public void addBook(Book book) {
@@ -25,13 +26,17 @@ public class GeneralUser extends User {
 	}
 	
 	public String[] getUserInfo() {
-		String[] userInfo = new String[5];
+		String[] userInfo = new String[6];
 		
 		userInfo[0] = id;
 		userInfo[1] = pw;
 		userInfo[2] = name;
 		userInfo[3] = phoneNum;
 		userInfo[4] = email;
+		if (isActivated)
+			userInfo[5] = "Activated";
+		else
+			userInfo[5] = "Deactivated";
 		
 		return userInfo;
 	}

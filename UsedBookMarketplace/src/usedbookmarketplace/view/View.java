@@ -14,6 +14,7 @@ import usedbookmarketplace.model.data.user.Admin;
 import usedbookmarketplace.model.data.user.GeneralUser;
 import usedbookmarketplace.model.data.user.User;
 import usedbookmarketplace.model.database.Database;
+import usedbookmarketplace.model.database.Observable;
 import usedbookmarketplace.view.Admin.ManageAccountUI;
 import usedbookmarketplace.view.Admin.MenuUI_Admin;
 import usedbookmarketplace.view.Admin.SearchBookUI_Admin;
@@ -28,9 +29,8 @@ import usedbookmarketplace.view.GeneralUser.SearchBookUI_General;
 public class View extends JFrame implements Observer{
 
 	private static final long serialVersionUID = 1L;
-	private Controller controller;
-	private Database DB;
-	private CardLayout card = new CardLayout();
+	private CardLayout card = new CardLayout();	
+	private TableUI currentTableUI;
 	
 	private LoginUI loginUI = new LoginUI();
 	private RegisterAccountUI registerAccUI = new RegisterAccountUI();
@@ -39,14 +39,12 @@ public class View extends JFrame implements Observer{
 	private ManageBookUI manageBookUI;
 	private InputBookInfoUI inputBookUI;
 	private ManageAccountUI manageAccountUI;
-	
-	private TableUI currentTableUI;
 
+	
 	/**
 	 * Initialize
 	 */		
-	public View(Database _DB){
-		this.DB = _DB;
+	public View(){
 		
 		setLayout(card);
 		this.add("LOGIN", loginUI);
@@ -59,6 +57,7 @@ public class View extends JFrame implements Observer{
 		setVisible(true);
 	}
 	
+	
 	/**
 	 * Observer function
 	 */
@@ -67,52 +66,67 @@ public class View extends JFrame implements Observer{
 		currentTableUI.updateTable(data);
 	}
 	
+	
+	/**
+	 * Show an message on the screen
+	 */
+	public void showMessageScreen(String msg) {
+		new showMessageScreen(msg);
+	}
+	public void successRegister() {
+		new showMessageScreen("Your account has been registered!");
+		registerAccUI.setTxtEmpty();
+		changeScene("LOGIN");
+	}
+	
+	
+	/**
+	 * Change the scene(card)
+	 */
+	public void changeScene(String sceneName) {
+		this.getCardLayout().show(this.getContentPane(), sceneName);
+	}
+	public void changeScene(String sceneName, TableUI tableUI, Database DB) {
+		this.setCurrentTableUI(tableUI);
+		if (tableUI == null)
+			currentTableUI = null;
+		else if (tableUI instanceof ManageBookUI)
+			tableUI.updateTable(((GeneralUser)DB.getCurrentUser()).getBookList());
+		else if (tableUI instanceof ManageAccountUI)
+			tableUI.updateTable(DB.getAccountDB());
+		else
+			tableUI.updateTable(DB.getBookDB());
+		this.getCardLayout().show(this.getContentPane(), sceneName);
+	}
+	
+	
 	/**
 	 * Create a menu based on the user index
 	 */
-	public void setMode(User currentUser) {
-		if (currentUser instanceof GeneralUser)	{			// general user
+	public void setMode(Database DB) {
+		if (DB.getCurrentUser() instanceof GeneralUser)	{			// set general user mode
 			setMenuUI(new MenuUI_General());
 			setSearchBookUI(new SearchBookUI_General(DB.getBookDB()));
-			setManageBookUI(new ManageBookUI(((GeneralUser)currentUser).getBookList()));
+			setManageBookUI(new ManageBookUI(((GeneralUser)DB.getCurrentUser()).getBookList()));
 		}
-		else {												// administrator
+		else {														// set administrator mode
 			setMenuUI(new MenuUI_Admin());
 			setSearchBookUI(new SearchBookUI_Admin(DB.getBookDB()));
 			setManageAccountUI(new ManageAccountUI(DB.getAccountDB()));
 		}
 	}
 	
-	/**
-	 * Show an error message on the screen
-	 */
-	public void showMessageScreen(String msg) {
-		new showMessageScreen(msg);
-	}
 	
 	/**
-	 * Show a new screen to the general user
+	 * Set the input mode to 'modify' or 'register'
 	 */
-	public void showRegisterBookScreen() {
-		manageBookUI.setManageDialog(new RegisterBookUI());
-//		manageBookUI.getManageDialog().addActionListeners(controller);
+	public void setInputMode() {
+		setInputBookInfoUI(new RegisterBookUI());
 	}
-	public void showModifyBookScreen(int index) {
-		manageBookUI.setManageDialog(new ModifyBookUI(DB.getBookDB().get(index)));
-		manageBookUI.setModifyIndex(index);
-//		manageBookUI.getManageDialog().addActionListeners(controller);
+	public void setInputMode(Book book) {
+		setInputBookInfoUI(new ModifyBookUI(book));
 	}
 	
-	/**
-	 * Change the scene(card) : 테이블이 있는 화면은 같이 넘겨서 currentTable저장
-	 */
-	public void changeScene(String sceneName) {
-		this.getCardLayout().show(this.getContentPane(), sceneName);
-	}
-	public void changeScene(String sceneName, TableUI tableUI) {
-		this.setCurrentTableUI(tableUI);
-		this.getCardLayout().show(this.getContentPane(), sceneName);
-	}
 	
 	/**
 	 *  Setter
@@ -127,12 +141,11 @@ public class View extends JFrame implements Observer{
 	}
 	private void setManageBookUI(ManageBookUI manageBookUI) {
 		this.manageBookUI = manageBookUI;
-		add("SALE", manageBookUI);
+		add("MANAGE_BOOK", manageBookUI);
 	}
 	private void setManageAccountUI(ManageAccountUI manageAccountUI) {
 		this.manageAccountUI = manageAccountUI;
-//		this.manageAccountUI.addActionListeners(controller);
-		add("ACCOUNT", manageAccountUI);
+		add("MANAGE_ACCOUNT", manageAccountUI);
 	}
 	private void setInputBookInfoUI(InputBookInfoUI inputBookUI) {
 		this.inputBookUI = inputBookUI;
@@ -140,9 +153,6 @@ public class View extends JFrame implements Observer{
 	}
 	private void setCurrentTableUI(TableUI _currentTableUI) {
 		currentTableUI = _currentTableUI;
-	}
-	public void setController(Controller _controller) {
-		controller = _controller;
 	}
 	
 	/**
@@ -153,9 +163,11 @@ public class View extends JFrame implements Observer{
 	public MenuUI getMenuUI() 			{	return menuUI;		}
 	public RegisterAccountUI getRegisterAccountUI() 	{	return registerAccUI;	}
 	public SearchBookUI getSearchBookUI() 		{	return searchBookUI;	}
-	public ManageAccountUI getManageAccountUI()		{	return manageAccountUI;	}
-	public ManageBookUI getManageBookUI() 			{	return manageBookUI;		}
+	public ManageAccountUI getManageAccountUI()	{	return manageAccountUI;	}
+	public ManageBookUI getManageBookUI() 		{	return manageBookUI;	}
+	public InputBookInfoUI getInputBookUI()		{	return inputBookUI;		}
 }
+
 
 /**
  *  Class about showing an error message on the screen

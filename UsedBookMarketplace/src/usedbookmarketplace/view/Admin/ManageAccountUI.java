@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import usedbookmarketplace.model.data.Book;
 import usedbookmarketplace.model.data.user.User;
 import usedbookmarketplace.view.TableUI;
 
@@ -19,24 +20,24 @@ public class ManageAccountUI extends TableUI {
 	private JButton backBtn = new JButton("Back");
 	private JButton logoutBtn = new JButton("Logout");
 	
-	public ManageAccountUI (Vector<User> bookList) {
+	public ManageAccountUI (Vector<User> userList) {
 		super();
 
 		// setting table
-		String[] colName = { "Title", "Author", "Publisher", "Publication Year", "ISBN", "Price", "Book State", "Seller ID", "Is Sold" };
+		String[] colName = { "ID", "PW", "Name", "Phone Number", "Email", "Is Activated" };
 		model = new DefaultTableModel(null, colName) {
 			public boolean isCellEditable(int r, int c) {
 				return false;
 			}
 		};
 		table = new JTable(model);
-		table.getColumn("Publication Year").setPreferredWidth(100);
+		//table.getColumn("Phone Number Year").setPreferredWidth(100);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.getTableHeader().setResizingAllowed(false);
-		updateTable(bookList);
+		updateTable(userList);
 		
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setPreferredSize(new Dimension(640, 480));
+		scroll.setPreferredSize(new Dimension(640, 430));
 		
 		// setting button
 		btnsPanel.add(changeStateBtn);
@@ -50,9 +51,17 @@ public class ManageAccountUI extends TableUI {
 	}
 	
 	@Override
-	public <T> void updateTable(Vector<T> data) {
-		// TODO Auto-generated method stub
-		
+	public <T> void updateTable(Vector<T> userList) {
+		model = (DefaultTableModel) table.getModel();
+		model.setNumRows(0);
+
+		for (int i = 0; i < userList.size(); i++) {
+			String[] bookInfo = ((User)userList.get(i)).getUserInfo();
+			if (bookInfo.length == 6)
+				model.addRow(new Object[] {bookInfo[0], bookInfo[1], bookInfo[2], bookInfo[3], bookInfo[4], bookInfo[5]});
+		}
+
+		table.setModel(model);		
 	}
 	
 	public void addActionListener_changeStateBtn(ActionListener action) {

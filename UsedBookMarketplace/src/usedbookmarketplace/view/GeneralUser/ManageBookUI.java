@@ -21,13 +21,12 @@ import usedbookmarketplace.view.TableUI;
 
 public class ManageBookUI extends TableUI{
 
-	private InputBookInfoUI manageDialog; 
+	//private InputBookInfoUI manageDialog; 
 	private JButton registerBtn = new JButton("Register");
 	private JButton modifyBtn = new JButton("Modify");
 	private JButton deleteBtn = new JButton("Delete");
 	private JButton backBtn = new JButton("Back");
 	private JButton logoutBtn = new JButton("Logout");
-	private int modifyIndex = -1;
 	
 	public ManageBookUI (Vector<Book> bookList) {
 		super();
@@ -46,7 +45,7 @@ public class ManageBookUI extends TableUI{
 		updateTable(bookList);
 		
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setPreferredSize(new Dimension(640, 480));
+		scroll.setPreferredSize(new Dimension(640, 430));
 		
 		// setting button
 		btnsPanel.add(registerBtn);
@@ -88,21 +87,5 @@ public class ManageBookUI extends TableUI{
 	}
 	public void addActionListener_logoutBtn(ActionListener action) {
 		logoutBtn.addActionListener(action);
-	}
-	
-	public InputBookInfoUI getManageDialog() {
-		return manageDialog;
-	}
-	
-	public void setManageDialog(InputBookInfoUI manageDialog) {
-		this.manageDialog = manageDialog;
-	}
-
-	public int getModifyIndex() {
-		return modifyIndex;
-	}
-
-	public void setModifyIndex(int modifyIndex) {
-		this.modifyIndex = modifyIndex;
 	}
 }

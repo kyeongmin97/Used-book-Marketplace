@@ -1,5 +1,6 @@
 package usedbookmarketplace.view.GeneralUser;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
@@ -15,6 +16,7 @@ public class SearchBookUI_General extends SearchBookUI {
 	public SearchBookUI_General(Vector<Book> bookList) {
 		super(bookList);
 		
+		btnsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 5));
 		btnsPanel.add(purchaseBtn);
 		btnsPanel.add(backBtn);
 		btnsPanel.add(logoutBtn);

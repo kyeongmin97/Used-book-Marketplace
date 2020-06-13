@@ -2,9 +2,11 @@ package usedbookmarketplace.view.GeneralUser;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public abstract class InputBookInfoUI extends JPanel {
@@ -14,6 +16,7 @@ public abstract class InputBookInfoUI extends JPanel {
 	private JLabel author_label = new JLabel("Author :");
 	private JLabel publisher_label = new JLabel("Publisher :");
 	private JLabel publicationYear_label = new JLabel("Publication Year :");
+	private JLabel isbn_label = new JLabel("ISBN :");
 	private JLabel price_label = new JLabel("Price :");
 	private JLabel bookState_label = new JLabel("Book State :");
 	
@@ -21,8 +24,12 @@ public abstract class InputBookInfoUI extends JPanel {
 	protected JTextField author_txt = new JTextField();
 	protected JTextField publisher_txt = new JTextField();
 	protected JTextField publicationYear_txt = new JTextField();
+	protected JTextField isbn_txt = new JTextField();
 	protected JTextField price_txt = new JTextField();
-	protected JTextField bookState_txt = new JTextField();
+	
+	protected JRadioButton excellentStateRbtn = new JRadioButton("Excellent");
+	protected JRadioButton goodStateRbtn = new JRadioButton("Good");
+	protected JRadioButton fairStateRbtn = new JRadioButton("Fair");
 	
 	protected JButton btn = new JButton();
 
@@ -36,14 +43,22 @@ public abstract class InputBookInfoUI extends JPanel {
 	}
     
     public String[] getAllTxt() {
-		String[] tokens = new String[6];
+		String[] tokens = new String[7];
 		
 		tokens[0] = title_txt.getText();
 		tokens[1] = author_txt.getText();
 		tokens[2] = publisher_txt.getText();
 		tokens[3] = publicationYear_txt.getText();
-		tokens[4] = price_txt.getText();
-		tokens[5] = bookState_txt.getText();
+		tokens[4] = isbn_txt.getText();
+		tokens[5] = price_txt.getText();
+		if (excellentStateRbtn.isSelected())
+			tokens[6] = "Excellent";
+		else if (goodStateRbtn.isSelected())
+			tokens[6] = "Good";
+		else if (goodStateRbtn.isSelected())
+			tokens[6] = "Fair";
+		else
+			System.out.println("not invalid bookstate");
 		
 		return tokens;
 	}
@@ -55,24 +70,36 @@ public abstract class InputBookInfoUI extends JPanel {
     	author_label.setBounds(160, 130, 100, 20);  	author_label.setHorizontalAlignment(JLabel.RIGHT);
     	publisher_label.setBounds(160, 160, 100, 20); 	publisher_label.setHorizontalAlignment(JLabel.RIGHT);
     	publicationYear_label.setBounds(160, 190, 100, 20); publicationYear_label.setHorizontalAlignment(JLabel.RIGHT);
-    	price_label.setBounds(160, 220, 100, 20); 		price_label.setHorizontalAlignment(JLabel.RIGHT);
-    	bookState_label.setBounds(160, 250, 100, 20); 	bookState_label.setHorizontalAlignment(JLabel.RIGHT);
+    	isbn_label.setBounds(160, 220, 100, 20); 		isbn_label.setHorizontalAlignment(JLabel.RIGHT);
+    	price_label.setBounds(160, 250, 100, 20); 		price_label.setHorizontalAlignment(JLabel.RIGHT);
+    	bookState_label.setBounds(160, 290, 100, 20); 	bookState_label.setHorizontalAlignment(JLabel.RIGHT);
     	
     	title_txt.setBounds(280, 100, 120, 20);
     	author_txt.setBounds(280, 130, 120, 20);
     	publisher_txt.setBounds(280, 160, 120, 20);
     	publicationYear_txt.setBounds(280, 190, 120, 20);
-    	price_txt.setBounds(280, 220, 120, 20);
-    	bookState_txt.setBounds(280, 250, 120, 20);
+    	isbn_txt.setBounds(280, 220, 120, 20);
+    	price_txt.setBounds(280, 250, 120, 20);
     	
-    	btn.setBounds(250, 300, 100, 35);
+    	JPanel radioBtnsPanel = new JPanel();    	
+		ButtonGroup searchFilter = new ButtonGroup();
+    	radioBtnsPanel.setBounds(280, 280, 200, 35);
+		searchFilter.add(excellentStateRbtn);
+		searchFilter.add(goodStateRbtn);
+		searchFilter.add(fairStateRbtn);
+		radioBtnsPanel.add(excellentStateRbtn);
+		radioBtnsPanel.add(goodStateRbtn);
+		radioBtnsPanel.add(fairStateRbtn);
+    	
+    	btn.setBounds(250, 330, 100, 35);
 
     	add(title_label);			add(title_txt);
     	add(author_label);			add(author_txt);
     	add(publisher_label);		add(publisher_txt);
     	add(publicationYear_label);	add(publicationYear_txt);
+    	add(isbn_label);			add(isbn_txt);
     	add(price_label);			add(price_txt);
-    	add(bookState_label);		add(bookState_txt);
+    	add(bookState_label);		add(radioBtnsPanel);
         add(btn);
     }
 }

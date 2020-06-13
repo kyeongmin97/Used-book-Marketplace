@@ -44,3 +44,7 @@
 1591991774575	Rename type 'AccountUI'
 1591991797651	Rename type 'SearchBookUI_GU'
 1591994448503	Rename type 'SearchUI_Admin'
+1592027303546	Encapsulate field 'inputBookUI'
+1592032327978	Delete element
+1592054687840	Delete element
+1592054691390	Delete element

@@ -4,7 +4,6 @@
     <fullyQualifiedTypeName name="usedbookmarketplace.database.BookDB"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.view.MainFrame"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.filesystem.FileProcess"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
     <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
@@ -33,15 +32,17 @@
     <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
     <fullyQualifiedTypeName name="java.util.Observer"/>
     <fullyQualifiedTypeName name="java.util.Observable"/>
-    <fullyQualifiedTypeName name="usedbookmarketplace.view.Observer"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.main.Controller"/>
     <fullyQualifiedTypeName name="java.util.Vector"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.data.user.User"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.data.user.Admin"/>
-    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.Book"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.view.GeneralUser.SaleUI_RegisterDialog"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.view.GeneralUser.SaleUI_ModifyDialog"/>
-    <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Database"/>
     <fullyQualifiedTypeName name="javax.swing.JPanel"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.view.GeneralUser.InputBookInfoUI"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Observable"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.Observer"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Database"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.Book"/>
 </qualifiedTypeNameHistroy>

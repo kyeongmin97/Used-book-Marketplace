@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Table"/>
+		<item key="selection" value="RegisterBook"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="setcurrent"/>
-			<item value="Table"/>
-			<item value="getTable"/>
-			<item value="updatebookDB"/>
-			<item value="updatebook&apos;DB"/>
-			<item value="updateDB"/>
-			<item value="view.search"/>
-			<item value="getmodel"/>
-			<item value="get"/>
-			<item value="getModel"/>
-			<item value="if (id.equals(DB.getAccountDB().get(DB.getAccountDB().size()-1).getID()) &amp;&amp; pw.equals(DB.getAccountDB().get(DB.getAccountDB().size()-1).getPW())) {"/>
-			<item value="setLayout"/>
-			<item value="writeFile"/>
+			<item value="registerBook"/>
+			<item value="modify"/>
+			<item value="input"/>
+			<item value="origin"/>
+			<item value="DB.init"/>
+			<item value="DB.i"/>
+			<item value="DB.in"/>
+			<item value="SearchBookUI_DeleteBtn_Listener"/>
+			<item value="current"/>
+			<item value="Current"/>
 			<item value="search"/>
-			<item value="view.add"/>
+			<item value="strategy"/>
+			<item value="index bound"/>
+			<item value="modifybook"/>
+			<item value="register"/>
 		</list>
 		<list key="replacehistory">
 			<item value="search"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="96"/>
-		<item key="DIALOG_Y_ORIGIN" value="200"/>
+		<item key="DIALOG_X_ORIGIN" value="1050"/>
+		<item key="DIALOG_Y_ORIGIN" value="259"/>
 		<item key="DIALOG_WIDTH" value="340"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

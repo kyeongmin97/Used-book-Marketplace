@@ -72,3 +72,35 @@ class searchBySellerID implements SearchStrategy {
 		return bookList;
 	}
 }
+
+class searchByPublisher implements SearchStrategy {
+	public Vector<Book> searchBook(String publisher, Database DB) {
+
+		Vector<Book> bookList = new Vector<Book>();
+		DB.setSearchedIndex(new Vector<Integer>());
+
+		for (int i = 0; i < DB.getBookDB().size(); i++) {
+			if (DB.getBookDB().get(i).getPublisher().equals(publisher)) {
+				bookList.add(DB.getBookDB().get(i));
+				DB.getSearchedIndex().add(i);
+			}
+		}
+		return bookList;
+	}
+}
+
+class searchByPublicationYear implements SearchStrategy {
+	public Vector<Book> searchBook(String publicationYear, Database DB) {
+
+		Vector<Book> bookList = new Vector<Book>();
+		DB.setSearchedIndex(new Vector<Integer>());
+
+		for (int i = 0; i < DB.getBookDB().size(); i++) {
+			if (DB.getBookDB().get(i).getPublicationYear().equals(publicationYear)) {
+				bookList.add(DB.getBookDB().get(i));
+				DB.getSearchedIndex().add(i);
+			}
+		}
+		return bookList;
+	}
+}

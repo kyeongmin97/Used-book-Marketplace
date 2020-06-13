@@ -1,8 +1,9 @@
-1:1:pkm:010-1111-2222:pkm1015@
-pkm1015:1015pkm:pkm:010-1111-2222:pkm1015@
-hsuk0122:0122:suk:010-3333-4444:hsuk0122@
-pth0909:0909pth:pth:010-5555-6666:pth0909@
-pje0508:158eunlive:pje:010-9999-8888:pje0508@
-lee:lee:lee:010-1111-1111:lee
+pkm1015:1:Park:010-0000-0000:kio1015@naver.com:Activated
+aaa000:aaa:Ahn:010-1111-1111:a0a0a0@gmail.com:Activated
+ddd444:ddd:Lee:010-4444-4444:dd44dd@daum.net:Activated
+fff666:fff:Kim:010-6666-6666:kim66@gmail.com:Activated
+ccc333:ccc:Choi:000-3333-3333:choi3@naver.com:Deactivated
+bbb111:bbb:Bang:000-2222-2222:bbb111@naver.com:Activated
+eee555:eee:Kwon:000-5555-5555:ee555e@daum.net:Activated
+ggg777:ggg:Jo:000-7777-7777:jo777@cau.ac.kr:Activated
 admin:nayana
-ljj0000:1:lee:01011112222:ljj0000@naver.com

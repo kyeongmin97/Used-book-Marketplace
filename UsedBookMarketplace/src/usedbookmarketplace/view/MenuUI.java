@@ -30,11 +30,4 @@ public class MenuUI extends JPanel {
 	public void addActionListener_btn2(ActionListener action){
 		btn2.addActionListener(action);
 	}
-//	
-//	public JButton getBtn1() {
-//		return btn1;
-//	}
-//	public JButton getBtn2() {
-//		return btn2;
-//	}
 }
