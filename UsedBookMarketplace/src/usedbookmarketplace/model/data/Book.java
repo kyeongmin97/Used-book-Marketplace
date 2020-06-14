@@ -1,7 +1,5 @@
 package usedbookmarketplace.model.data;
 
-import usedbookmarketplace.model.data.user.GeneralUser;
-
 public class Book {
 	private String title;
 	private String author;
@@ -11,7 +9,7 @@ public class Book {
 	private String price;
 	private String bookState;
 	private String sellerID;
-	private GeneralUser seller;	// 수정 필요할 수도,  구매 시 서로에게 이메일을 보낼 때 필요
+//	private GeneralUser seller;
 	private boolean isSold;
 
 	// constructor
@@ -32,17 +30,6 @@ public class Book {
 				isSold = false;
 		}
 	}
-
-// need to change a condition
-//	private BookState strToBookState(String s) {
-//		switch (Integer.parseInt(s)) {
-//		case 0: return BookState.EXCELLENT;
-//		case 1: return BookState.GOOD;
-//		case 2: return BookState.FIAR;
-//		default:
-//			return null;
-//		} 
-//	}
 	
 	// returns all book informations
 	public String[] getBookInfo() {
@@ -59,8 +46,8 @@ public class Book {
 	// getter, setter
 
 	
-	public GeneralUser getSeller()		{ return this.seller; }
-	public String getSellerID() 		{ return this.sellerID; }
+//	public GeneralUser getSeller()		{ return this.seller; }
+	
 	public String getTitle() 			{ return title; }
 	public String getAuthor()			{ return author; }
 	public String getPublisher()		{ return publisher; }
@@ -68,9 +55,10 @@ public class Book {
 	public String getISBN()				{ return ISBN; }
 	public String getPrice() 			{ return price; }
 	public String getBookState() 		{ return bookState; }
+	public String getSellerID() 		{ return this.sellerID; }
 	public boolean isSold() 			{ return isSold; }
 
-	public void setSeller(GeneralUser seller) 	{ this.seller = seller;	}
+//	public void setSeller(GeneralUser seller) 	{ this.seller = seller;	}
 	public void setTitle(String title) 			{ this.title = title;	}
 	public void setAuthor(String author) 		{ this.author = author;	}
 	public void setPublisher(String publisher) 	{ this.publisher = publisher;	}
@@ -78,5 +66,6 @@ public class Book {
 	public void setISBN(String ISBN)			{ this.ISBN = ISBN;	}
 	public void setPrice(String price) 			{ this.price = price;	}
 	public void setBookState(String bookState) 	{ this.bookState = bookState;	}
+	public void setSellerID(String sellerID)	{ this.sellerID = sellerID; }
 	public void setSold(boolean isSold) 		{ this.isSold = isSold;	}
 }

@@ -27,11 +27,12 @@ public abstract class InputBookInfoUI extends JPanel {
 	protected JTextField isbn_txt = new JTextField();
 	protected JTextField price_txt = new JTextField();
 	
-	protected JRadioButton excellentStateRbtn = new JRadioButton("Excellent");
+	protected JRadioButton excellentStateRbtn = new JRadioButton("Excellent", true);
 	protected JRadioButton goodStateRbtn = new JRadioButton("Good");
 	protected JRadioButton fairStateRbtn = new JRadioButton("Fair");
 	
 	protected JButton btn = new JButton();
+	private JButton backBtn = new JButton("Back");
 
 	public InputBookInfoUI() {
 		
@@ -40,6 +41,9 @@ public abstract class InputBookInfoUI extends JPanel {
     
     public void addActionListener_btn(ActionListener action) {
     	btn.addActionListener(action);
+	}
+    public void addActionListener_backBtn(ActionListener action) {
+    	backBtn.addActionListener(action);
 	}
     
     public String[] getAllTxt() {
@@ -91,7 +95,10 @@ public abstract class InputBookInfoUI extends JPanel {
 		radioBtnsPanel.add(goodStateRbtn);
 		radioBtnsPanel.add(fairStateRbtn);
     	
-    	btn.setBounds(250, 330, 100, 35);
+		JPanel btnsPanel = new JPanel();
+		btnsPanel.add(btn);
+		btnsPanel.add(backBtn);
+		btnsPanel.setBounds(200, 330, 100, 35);
 
     	add(title_label);			add(title_txt);
     	add(author_label);			add(author_txt);
@@ -100,6 +107,6 @@ public abstract class InputBookInfoUI extends JPanel {
     	add(isbn_label);			add(isbn_txt);
     	add(price_label);			add(price_txt);
     	add(bookState_label);		add(radioBtnsPanel);
-        add(btn);
+        add(btnsPanel);
     }
 }

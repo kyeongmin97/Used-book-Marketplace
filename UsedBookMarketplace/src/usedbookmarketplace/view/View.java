@@ -181,7 +181,7 @@ class showMessageScreen extends JDialog {
             label.setText(str);
             label.setHorizontalAlignment(JLabel.CENTER);
             
-            setSize(360,120);
+            setSize(400,120);
             setLocation(300, 200);
             setModal(true);
             setVisible(true);

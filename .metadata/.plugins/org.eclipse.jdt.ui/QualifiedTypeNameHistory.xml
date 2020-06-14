@@ -45,4 +45,6 @@
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Database"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.data.Book"/>
+    <fullyQualifiedTypeName name="javax.swing.text.View"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.View"/>
 </qualifiedTypeNameHistroy>

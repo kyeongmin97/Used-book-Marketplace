@@ -24,14 +24,15 @@ public class FileProcess {
 
 				if (!line.startsWith("//") && !line.isEmpty()) {
 					String[] tokens = line.split(":");
+					
 					if (tokens.length != 9)
 						throw new Exception("Invalid fileInput");
 					bookList.add(new Book(tokens));
 				}
 			}
 			scan.close();
-
 			return bookList;
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -107,20 +108,4 @@ public class FileProcess {
 			e.printStackTrace();
 		}
 	}
-
-//	// write the added account to the file
-//	public void writeFile(String[] info, String fileName) {
-//		try {
-//			PrintWriter pw = new PrintWriter(new FileWriter(fileName, true));
-//
-//			pw.write("\n");
-//			for (int i = 0; i < info.length - 1; i++)
-//				pw.write(info[i] + ":");
-//			pw.write(info[info.length - 1]);
-//
-//			pw.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
 }

@@ -27,4 +27,4 @@ book9:auth3:pub4:2011:000000005:9900:Fair:aaa000:Not Sold
 book1:auth1:pub1:2003:000000003:22000:Excellent:bbb111:Not Sold
 book8:auth8:pub1:2020:000000009:30000:Excellent:eee555:Not Sold
 book9:auth1:pub2:2020:000000009:10000:Excellent:fff666:Not Sold
-book99:auth0:pub1:2009:000000001:10000:Excellent:null:Not Sold
+book99:auth99:pub99:2020:000000009:99000:Good:pkm1015:Not Sold
