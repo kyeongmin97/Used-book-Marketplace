@@ -1,7 +1,0 @@
-package usedbookmarketplace.view;
-
-public class Search_GeneralUser {
-	public Search_GeneralUser() {
-		table.getColumn("Publication Year").setPreferredWidth(100);
-	}
-}

@@ -42,9 +42,14 @@
     <fullyQualifiedTypeName name="usedbookmarketplace.view.GeneralUser.InputBookInfoUI"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Observable"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.view.Observer"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Database"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.data.Book"/>
     <fullyQualifiedTypeName name="javax.swing.text.View"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.view.View"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.controller.InvalidInputException"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.controller.InvalidException"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.data.Admin"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.view.GeneralUser.RegisterBookUI"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Database"/>
+    <fullyQualifiedTypeName name="model.data.GeneralUser"/>
 </qualifiedTypeNameHistroy>

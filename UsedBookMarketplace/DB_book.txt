@@ -1,30 +1,30 @@
-book1:auth1:pub1:2005:000000001:10000:Good:aaa000:Not Sold
-book2:auth2:pub2:2003:000000002:9900:Excellent:bbb111:Sold
-book3:auth3:pub1:2011:000000007:14000:Fair:ccc333:Not Sold
-book2:auth2:pub2:2003:000000002:9900:Fair:aaa000:Sold
-book4:auth4:pub4:2011:000000004:12000:Excellent:bbb111:Not Sold
-book6:auth6:pub1:2003:000000006:15000:Good:ddd444:Not Sold
-book1:auth1:pub1:2003:000000003:22000:Excellent:bbb111:Not Sold
-book8:auth8:pub1:2020:000000009:30000:Excellent:eee555:Not Sold
-book9:auth1:pub2:2020:000000009:10000:Excellent:eee555:Not Sold
-book1:auth1:pub1:2005:000000001:10000:Good:aaa000:Not Sold
-book2:auth2:pub2:2003:000000002:9900:Excellent:fff666:Not Sold
-book3:auth3:pub1:2011:000000007:14000:Fair:ccc333:Not Sold
-book2:auth2:pub2:2003:000000002:9900:Fair:aaa000:Not Sold
-book4:auth4:pub4:2011:000000004:12000:Excellent:ggg777:Not Sold
-book6:auth6:pub1:2003:000000006:15000:Good:ddd444:Not Sold
-book10:auth6:pub2:2003:000000006:20000:Excellent:aaa000:Not Sold
-book1:auth1:pub1:2003:000000003:22000:Excellent:bbb111:Sold
-book8:auth8:pub1:2020:000000009:30000:Excellent:fff666:Not Sold
-book9:auth1:pub2:2020:000000009:10000:Excellent:eee555:Not Sold
-book1:auth1:pub1:2005:000000001:10000:Good:ggg777:Not Sold
-book2:auth2:pub2:2003:000000002:9900:Excellent:bbb111:Not Sold
-book3:auth3:pub1:2011:000000007:14000:Fair:ccc333:Not Sold
-book2:auth2:pub2:2003:000000002:9900:Fair:aaa000:Not Sold
-book4:auth4:pub4:2011:000000004:12000:Excellent:ggg777:Not Sold
-book6:auth6:pub1:2003:000000006:15000:Good:ddd444:Not Sold
-book9:auth3:pub4:2011:000000005:9900:Fair:aaa000:Not Sold
-book1:auth1:pub1:2003:000000003:22000:Excellent:bbb111:Not Sold
-book8:auth8:pub1:2020:000000009:30000:Excellent:eee555:Not Sold
-book9:auth1:pub2:2020:000000009:10000:Excellent:fff666:Not Sold
-book99:auth99:pub99:2020:000000009:99000:Good:pkm1015:Not Sold
+book1:lee:pub1:2005:0000111100001:10000:Good:aaa000:Sold
+book7:son:pub2:2003:0000111100007:39900:Excellent:fff666:Sold
+book9:kim:pub1:2011:0000111100009:9900:Fair:ddd444:Not Sold
+book4:choi:pub2:2003:0000111100004:10900:Fair:aaa000:Sold
+book7:son:pub2:2003:0000111100007:30000:Good:bbb111:Sold
+book2:jo:pub4:2011:0000111100002:85000:Excellent:bbb111:Not Sold
+book8:kim:pub1:2003:0000111100008:15000:Good:ddd444:Not Sold
+book3:park:pub1:2003:0000111100003:42000:Excellent:fff666:Not Sold
+book6:kwon:pub1:2020:0000111100006:33000:Excellent:eee555:Not Sold
+book5:lee:pub2:2020:0000111100005:60000:Excellent:ddd444:Not Sold
+book1:park:pub4:2015:0000111100013:20000:Fair:ddd444:Not Sold
+book7:son:pub2:2003:0000111100007:39900:Excellent:eee555:Sold
+book9:kim:pub1:2011:0000111100009:9900:Fair:ccc333:Not Sold
+book4:lee:pub4:2020:0000111100016:39000:Excellent:eee555:Sold
+book8:kim:pub1:2003:0000111100008:15000:Fair:ccc333:Not Sold
+book3:park:pub1:2003:0000111100003:42000:Excellent:bbb111:Not Sold
+book6:kwon:pub1:2020:0000111100006:32000:Excellent:ccc333:Not Sold
+book5:lee:pub2:2020:0000111100005:59000:Good:eee555:Not Sold
+book1:lee:pub1:2005:0000111100001:15000:Excellent:ccc333:Not Sold
+book7:son:pub2:2003:0000111100007:39900:Excellent:fff666:Sold
+book1:kim:pub1:2011:0000111100011:9900:Fair:ccc333:Sold
+book5:park:pub4:2001:0000111100014:13000:Fair:aaa000:Not Sold
+book5:nam:pub6:2016:0000111100016:18000:Good:bbb111:Sold
+book1:kim:pub1:2003:0000111100012:15000:Good:ddd444:Not Sold
+book3:park:pub1:2003:0000111100003:42000:Excellent:fff666:Not Sold
+book7:son:pub2:2003:0000111100007:39900:Excellent:fff666:Sold
+book9:kim:pub1:2011:0000111100009:9900:Fair:ddd444:Not Sold
+book11:choi:pub4:2004:0000111100015:39000:Excellent:aaa000:Sold
+book12:ki:pub4:2013:0000111100018:15000:Fair:bbb111:Not Sold
+book9:jo:pub5:2019:0000111100017:9000:Good:aaa000:Not Sold

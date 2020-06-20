@@ -1,9 +1,9 @@
-pkm1015:1:Park:010-0000-0000:kio1015@naver.com:Activated
-aaa000:aaa:Ahn:010-1111-1111:a0a0a0@gmail.com:Activated
-ddd444:ddd:Lee:010-4444-4444:dd44dd@daum.net:Activated
-fff666:fff:Kim:010-6666-6666:kim66@gmail.com:Activated
-ccc333:ccc:Choi:000-3333-3333:choi3@naver.com:Activated
-bbb111:bbb:Bang:000-2222-2222:bbb111@naver.com:Activated
-eee555:eee:Kwon:000-5555-5555:ee555e@daum.net:Activated
-ggg777:ggg:Jo:000-7777-7777:jo777@cau.ac.kr:Activated
+pkm1015:1:Park:01000000000:kio1015@naver.com:Activated
+aaa000:aaaaaaaa:Ahn:01011111111:a0a0a0@gmail.com:Activated
+ddd444:dddddddd:Lee:01044444444:dd44dd@daum.net:Activated
+fff666:ffffffff:Kim:01066666666:kim66@gmail.com:Activated
+ccc333:cccccccc:Choi:00033333333:choi3@naver.com:Deactivated
+bbb111:bbbbbbbb:Bang:00022222222:bbb111@naver.com:Activated
+eee555:eeeeeeee:Kwon:00055555555:ee555e@daum.net:Activated
+ggg777:gggggggg:Jo:00077777777:jo777@cau.ac.kr:Deactivated
 admin:nayana

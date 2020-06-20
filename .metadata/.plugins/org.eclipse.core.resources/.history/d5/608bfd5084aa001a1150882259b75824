@@ -1,7 +1,0 @@
-package usedbookmarketplace.view;
-
-public class MenuAdmin {
-	public Menu_Admin(){
-		btn1.setText("Sell/Manage books");
-		btn2.setText("Buy books");
-}
