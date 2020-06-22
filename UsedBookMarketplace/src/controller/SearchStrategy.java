@@ -2,15 +2,15 @@ package controller;
 
 import java.util.Vector;
 
+import model.Model;
 import model.data.Book;
-import model.database.Database;
 
 public interface SearchStrategy {
-	public Vector<Book> searchBook(String searchWord, Database DB);	
+	public Vector<Book> searchBook(String searchWord, Model DB);	
 }
 
 class SearchByTitle implements SearchStrategy {
-	public Vector<Book> searchBook(String title, Database DB) {
+	public Vector<Book> searchBook(String title, Model DB) {
 
 		Vector<Book> searchedBookList = new Vector<Book>();
 		DB.setOriginIndex(new Vector<Integer>());
@@ -26,7 +26,7 @@ class SearchByTitle implements SearchStrategy {
 }
 
 class SearchByAuthor implements SearchStrategy {
-	public Vector<Book> searchBook(String author, Database DB) {
+	public Vector<Book> searchBook(String author, Model DB) {
 
 		Vector<Book> searchedBookList = new Vector<Book>();
 		DB.setOriginIndex(new Vector<Integer>());
@@ -42,7 +42,7 @@ class SearchByAuthor implements SearchStrategy {
 }
 
 class SearchByISBN implements SearchStrategy {
-	public Vector<Book> searchBook(String isbn, Database DB) {
+	public Vector<Book> searchBook(String isbn, Model DB) {
 
 		Vector<Book> searchedBookList = new Vector<Book>();
 		DB.setOriginIndex(new Vector<Integer>());
@@ -58,7 +58,7 @@ class SearchByISBN implements SearchStrategy {
 }
 
 class SearchBySellerID implements SearchStrategy {
-	public Vector<Book> searchBook(String sellerID, Database DB) {
+	public Vector<Book> searchBook(String sellerID, Model DB) {
 
 		Vector<Book> searchedBookList = new Vector<Book>();
 		DB.setOriginIndex(new Vector<Integer>());
@@ -74,7 +74,7 @@ class SearchBySellerID implements SearchStrategy {
 }
 
 class SearchByPublisher implements SearchStrategy {
-	public Vector<Book> searchBook(String publisher, Database DB) {
+	public Vector<Book> searchBook(String publisher, Model DB) {
 
 		Vector<Book> searchedBookList = new Vector<Book>();
 		DB.setOriginIndex(new Vector<Integer>());
@@ -90,7 +90,7 @@ class SearchByPublisher implements SearchStrategy {
 }
 
 class SearchByPublicationYear implements SearchStrategy {
-	public Vector<Book> searchBook(String publicationYear, Database DB) {
+	public Vector<Book> searchBook(String publicationYear, Model DB) {
 
 		Vector<Book> searchedBookList = new Vector<Book>();
 		DB.setOriginIndex(new Vector<Integer>());

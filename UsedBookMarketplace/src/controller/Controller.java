@@ -3,15 +3,15 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.Model;
 import model.data.GeneralUser;
-import model.database.Database;
 import view.View;
 import view.Admin.SearchBookUI_Admin;
 import view.GeneralUser.RegisterBookUI;
 import view.GeneralUser.SearchBookUI_General;
 
 public class Controller {
-	private Database DB = new Database();
+	private Model model = new Model();
 	private View view = new View();
 	private SearchStrategy searchFilter = new SearchByTitle();
 
@@ -19,7 +19,7 @@ public class Controller {
 	 * constructor
 	 */
 	public Controller() {
-		DB.addObserver(view);
+		model.addObserver(view);
 
 		view.getLoginUI().addActionListener_login(new LoginUI_LoginBtn_Listener());
 		view.getLoginUI().addActionListener_register(new LoginUI_RegisterBtn_Listener());
@@ -33,13 +33,13 @@ public class Controller {
 	private class LoginUI_LoginBtn_Listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			try {
-				DB.authenticate(view.getLoginUI().getIDtxt(), view.getLoginUI().getPWtxt());	// authenticate the user
+				model.authenticate(view.getLoginUI().getIDtxt(), view.getLoginUI().getPWtxt());	// authenticate the user
 				
-				view.setMode(DB);					// set the view mode according to the administrator or general user 	
+				view.setMode(model);					// set the view mode according to the administrator or general user 	
 				setActionListener();				// add the actionListener on the buttons according to the mode
 				view.getLoginUI().setTxtEmpty();
 				view.changeScreen("MENU");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -68,12 +68,12 @@ public class Controller {
 		public void actionPerformed(ActionEvent event) {
 			try {
 				String[] userInfo = view.getRegisterAccountUI().getAllTxt();
-				DB.registerUser(userInfo);		// register the general user with DB
+				model.registerUser(userInfo);		// register the general user with DB
 				
 				view.showMessageScreen("Your account has been registered!");
 				view.getRegisterAccountUI().resetTxt();
 				view.changeScreen("LOGIN");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -101,9 +101,9 @@ public class Controller {
 	private class MenuUI_Btn1_Listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			try {
-				DB.resetToSearchedIndex();
-				view.getSearchBookUI().resetSearchTxt();
-				view.changeScene("SEARCH", view.getSearchBookUI(), DB);
+				model.resetToInitalIndex();
+				view.getSearchBookUI().setSearchTxt(null);
+				view.changeScene("SEARCH", view.getSearchBookUI(), model);
 			} catch (Exception e) {
 				view.showMessageScreen(e.getMessage());
 			}
@@ -116,12 +116,12 @@ public class Controller {
 	private class MenuUI_Btn2_Listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			try {
-				if (DB.getCurrentUser() instanceof GeneralUser) {
-					DB.resetToUserBookIndex();
-					view.changeScene("MANAGE_BOOK", view.getManageBookUI(), DB);
+				if (model.getCurrentUser() instanceof GeneralUser) {
+					model.resetToUserBookIndex();
+					view.changeScene("MANAGE_BOOK", view.getManageBookUI(), model);
 				}
 				else
-					view.changeScene("MANAGE_ACCOUNT", view.getManageAccountUI(), DB);
+					view.changeScene("MANAGE_ACCOUNT", view.getManageAccountUI(), model);
 			} catch (Exception e) {
 				e.printStackTrace();
 				view.showMessageScreen(e.getMessage());
@@ -135,8 +135,8 @@ public class Controller {
 	private class SearchBookUI_SearchBtn_Listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			try {
-				DB.searchBook(view.getSearchBookUI().getSearchTxt(), searchFilter);
-			} catch (InvalidException e) {
+				model.searchBook(view.getSearchBookUI().getSearchTxt(), searchFilter);
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -151,13 +151,14 @@ public class Controller {
 		public void actionPerformed(ActionEvent event) {
 			try {
 				int selectedIndex = view.getSearchBookUI().getTable().getSelectedRow();
-				int originIndex = DB.changeToOriginIndex(selectedIndex);
+				model.purchaseBook(selectedIndex);
 				
-				DB.purchaseBook(selectedIndex);
+				int originIndex = model.changeToOriginIndex(selectedIndex);
 				signalToEmailServer(originIndex);
-				view.showMessageScreen("<html> Send E-mail <br>" + "buyer : " + ((GeneralUser) DB.getCurrentUser()).getEmail()
-						+ "<br>" + "seller : " + DB.getBookSeller(originIndex).getEmail() + "</html>");
-			} catch (InvalidException e) {
+				
+				view.showMessageScreen("<html> Send E-mail <br>" + "buyer : " + ((GeneralUser) model.getCurrentUser()).getEmail()
+						+ "<br>" + "seller : " + model.getBookSeller(originIndex).getEmail() + "</html>");
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -173,9 +174,9 @@ public class Controller {
 			try {
 				int selectedIndex = view.getSearchBookUI().getTable().getSelectedRow();
 
-				DB.deleteBook_admin(selectedIndex);
+				model.deleteBook_admin(selectedIndex);
 				view.showMessageScreen("complete deletion!");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -205,12 +206,12 @@ public class Controller {
 		public void actionPerformed(ActionEvent event) {
 			try {
 				int selectedIndex = view.getManageBookUI().getTable().getSelectedRow();
-				DB.checkCanModifyBook(selectedIndex);
+				model.getCheckException().checkValidBookForModify(selectedIndex);
 				
-				view.setInputMode(DB.getBookDB().get(DB.changeToOriginIndex(selectedIndex)));
+				view.setInputMode(model.getBookDB().get(model.changeToOriginIndex(selectedIndex)));
 				setInputActionListener();
 				view.changeScreen("INPUT");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -226,9 +227,9 @@ public class Controller {
 			try {
 				int selectedIndex = view.getManageBookUI().getTable().getSelectedRow();
 
-				DB.deleteBook_user(selectedIndex);
+				model.deleteBook_user(selectedIndex);
 				view.showMessageScreen("complete deletion!");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -244,10 +245,10 @@ public class Controller {
 			try {
 				String[] bookInfo = view.getInputBookUI().getAllTxt();
 
-				DB.registerBook(bookInfo);
+				model.registerBook(bookInfo);
 				view.showMessageScreen("complete registration!");
 				view.changeScreen("MANAGE_BOOK");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -264,10 +265,10 @@ public class Controller {
 				int selectedIndex = view.getManageBookUI().getTable().getSelectedRow();
 				String[] bookInfo = view.getInputBookUI().getAllTxt();
 
-				DB.modifyBook(bookInfo, selectedIndex);
+				model.modifyBook(bookInfo, selectedIndex);
 				view.showMessageScreen("complete modification!");
 				view.changeScreen("MANAGE_BOOK");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -295,9 +296,9 @@ public class Controller {
 		public void actionPerformed(ActionEvent event) {
 			try {
 				int selectedIndex = view.getManageAccountUI().getTable().getSelectedRow();
-				DB.changeUserState(selectedIndex);
+				model.changeUserState(selectedIndex);
 				view.showMessageScreen("User's state has been changed.");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -313,9 +314,9 @@ public class Controller {
 			try {
 				int selectedIndex = view.getManageAccountUI().getTable().getSelectedRow();
 
-				DB.deleteAccount(selectedIndex);
+				model.deleteUser(selectedIndex);
 				view.showMessageScreen("complete deletion!");
-			} catch (InvalidException e) {
+			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -329,8 +330,8 @@ public class Controller {
 	private class User_LogoutBtn_Listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			try {
-				DB.setCurrentUser(null);
-				view.changeScene("LOGIN", null, DB);
+				model.setCurrentUser(null);
+				view.changeScene("LOGIN", null, model);
 			} catch (Exception e) {
 				view.showMessageScreen(e.getMessage());
 			}
@@ -413,7 +414,7 @@ public class Controller {
 		view.getSearchBookUI().addActionListener_sellerIdRBtn(new SearchBookUI_SellerIdRbtn_Listener());
 
 		// depend on the mode (administrator or general user)
-		if (DB.getCurrentUser() instanceof GeneralUser) {
+		if (model.getCurrentUser() instanceof GeneralUser) {
 			((SearchBookUI_General) view.getSearchBookUI()).addActionListener_purchase(new SearchBookUI_PurchaseBtn_Listener());
 			view.getManageBookUI().addActionListener_registerBtn(new ManageBookUI_RegisterBtn_Listener());
 			view.getManageBookUI().addActionListener_modifyBtn(new ManageBookUI_ModifyBtn_Listener());
@@ -434,5 +435,12 @@ public class Controller {
 		else
 			view.getInputBookUI().addActionListener_btn(new InputBookInfoUI_ModifyBtn_Listener());
 		view.getInputBookUI().addActionListener_backBtn(new InputBookInfoUI_BackBtn_Listener());
+	}
+	
+	public View getView() {
+		return view;
+	}
+	public Model getModel() {
+		return model;
 	}
 }

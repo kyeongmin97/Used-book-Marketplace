@@ -69,18 +69,6 @@ public abstract class InputBookInfoUI extends JPanel {
 		return tokens;
 	}
     
-//    public void resetAllTxt() {
-//    	title_txt.setText(null);
-//    	author_txt.setText(null);
-//    	publisher_txt.setText(null);
-//    	publicationYear_txt.setText(null);
-//    	isbn_txt.setText(null);
-//    	price_txt.setText(null);
-//    	excellentStateRbtn.setSelected(true);
-//    }
-    
-	public JButton getBtn() {	return btn;	}
-    
     private void initialize() {
     	setLayout(null);
         
@@ -122,5 +110,9 @@ public abstract class InputBookInfoUI extends JPanel {
     	add(price_label);			add(price_txt);
     	add(bookState_label);		add(radioBtnsPanel);
         add(btnsPanel);
-    }
+    }    
+
+	public JButton getBtn() {
+		return btn;
+	}
 }

@@ -52,4 +52,9 @@
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="usedbookmarketplace.model.database.Database"/>
     <fullyQualifiedTypeName name="model.data.GeneralUser"/>
+    <fullyQualifiedTypeName name="view.View"/>
+    <fullyQualifiedTypeName name="model.database.Model"/>
+    <fullyQualifiedTypeName name="org.junit.Test"/>
+    <fullyQualifiedTypeName name="junit.framework.TestSuite"/>
+    <fullyQualifiedTypeName name="junit.framework.TestCase"/>
 </qualifiedTypeNameHistroy>

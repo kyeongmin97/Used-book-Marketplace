@@ -9,7 +9,6 @@ public class Book {
 	private String price;
 	private String bookState;
 	private String sellerID;
-//	private GeneralUser seller;
 	private boolean isSold;
 
 	// constructor
@@ -44,10 +43,6 @@ public class Book {
 	}
 	
 	// getter, setter
-
-	
-//	public GeneralUser getSeller()		{ return this.seller; }
-	
 	public String getTitle() 			{ return title; }
 	public String getAuthor()			{ return author; }
 	public String getPublisher()		{ return publisher; }
@@ -58,7 +53,6 @@ public class Book {
 	public String getSellerID() 		{ return this.sellerID; }
 	public boolean isSold() 			{ return isSold; }
 
-//	public void setSeller(GeneralUser seller) 	{ this.seller = seller;	}
 	public void setTitle(String title) 			{ this.title = title;	}
 	public void setAuthor(String author) 		{ this.author = author;	}
 	public void setPublisher(String publisher) 	{ this.publisher = publisher;	}

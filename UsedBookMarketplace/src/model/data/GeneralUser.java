@@ -22,10 +22,19 @@ public class GeneralUser extends User {
 			else
 				isActivated = false;
 		}
+		else if (tokens.length == 5)
+			isActivated = true;
+		else
+			System.out.print("error");
 	}
 	
-	public void registerBook(Book book) {
-		bookList.add(book);
+	public void registerBook(String[] bookInfo) {
+		Book newBook = new Book(bookInfo);
+		newBook.setSold(false);		// set new book to 'Not Sold'
+		newBook.setSellerID(id);	// set sellerID
+
+		bookList.add(newBook);		// add new book to user book list
+
 	}
 	public void deleteBook(int index) {
 		bookList.remove(index);
@@ -34,6 +43,7 @@ public class GeneralUser extends User {
 		bookList.remove(book);
 	}
 	
+	@Override
 	public String[] getUserInfo() {
 		String[] userInfo = new String[6];
 		
@@ -51,8 +61,16 @@ public class GeneralUser extends User {
 	}
 	
 	// getter, setter
-	public String getEmail() 			{	return email;	}
-	public Vector<Book> getBookList()	{	return bookList;	}
-	public boolean isActivated() 		{	return isActivated;	}
-	public void setActivated(boolean isActivated) {	this.isActivated = isActivated;	}
+	public String getEmail() {
+		return email;
+	}
+	public Vector<Book> getBookList() {
+		return bookList;
+	}
+	public boolean isActivated() {
+		return isActivated;
+	}
+	public void setActivated(boolean isActivated) {
+		this.isActivated = isActivated;
+	}
 }

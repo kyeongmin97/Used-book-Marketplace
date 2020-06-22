@@ -7,6 +7,7 @@ public class Admin extends User {
 		super.pw = tokens[1];
 	}
 	
+	@Override
 	public String[] getUserInfo() {
 		String[] userInfo = new String[2];
 		

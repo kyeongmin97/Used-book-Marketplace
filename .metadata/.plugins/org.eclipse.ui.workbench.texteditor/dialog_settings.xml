@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="ChangeState"/>
+		<item key="selection" value="SearchStrategy"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="searchstrategy"/>
+			<item value="DB."/>
+			<item value="DB"/>
+			<item value="purchase"/>
+			<item value="RegisterBook"/>
+			<item value="registerbook"/>
+			<item value="originIndex"/>
+			<item value="DB "/>
+			<item value="bookdb"/>
+			<item value="account"/>
+			<item value="accountdB"/>
+			<item value="bookDB"/>
 			<item value="changestate"/>
 			<item value="change"/>
 			<item value="print"/>
-			<item value="book5"/>
-			<item value="modifybook"/>
-			<item value="modify"/>
-			<item value="backbtn"/>
-			<item value="GeneralUser"/>
-			<item value="InputBookInfoUI"/>
-			<item value="search"/>
-			<item value="origin"/>
-			<item value="real"/>
-			<item value="getalltxt"/>
-			<item value="addActionListener_btn"/>
-			<item value="aaa000"/>
 		</list>
 		<list key="replacehistory">
+			<item value="model."/>
+			<item value="model"/>
 			<item value="search"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1298"/>
-		<item key="DIALOG_Y_ORIGIN" value="207"/>
+		<item key="DIALOG_X_ORIGIN" value="-506"/>
+		<item key="DIALOG_Y_ORIGIN" value="195"/>
 		<item key="DIALOG_WIDTH" value="340"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

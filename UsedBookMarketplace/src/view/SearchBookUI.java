@@ -75,10 +75,12 @@ public abstract class SearchBookUI extends TableUI {
 		model = (DefaultTableModel) table.getModel();	//initialize table
 		model.setNumRows(0);
 
-		for (int i = 0; i < bookList.size(); i++) {
-			String[] bookInfo = ((Book)bookList.get(i)).getBookInfo();
-			model.addRow(new Object[] { bookInfo[0], bookInfo[1], bookInfo[2], bookInfo[3], bookInfo[4],
-										bookInfo[5], bookInfo[6], bookInfo[7], bookInfo[8] });
+		if (bookList != null) {
+			for (int i = 0; i < bookList.size(); i++) {
+				String[] bookInfo = ((Book) bookList.get(i)).getBookInfo();
+				model.addRow(new Object[] { bookInfo[0], bookInfo[1], bookInfo[2], bookInfo[3], bookInfo[4],
+						bookInfo[5], bookInfo[6], bookInfo[7], bookInfo[8] });
+			}
 		}
 
 		table.setModel(model);
@@ -112,9 +114,18 @@ public abstract class SearchBookUI extends TableUI {
 		sellerIdRBtn.addActionListener(action);
 	}
 
-	public void resetSearchTxt() {
-		searchTxt.setText(null);
+	public void setSearchTxt(String searchWord) {
+		searchTxt.setText(searchWord);
 	}
-	// getter, setter
-	public String getSearchTxt() 		{	return searchTxt.getText();		}
+	public String getSearchTxt() {
+		return searchTxt.getText();
+	}
+	
+
+	public JButton getSearchBtn() {
+		return searchBtn;
+	}
+	public JRadioButton getSellerIdRBtn() {
+		return sellerIdRBtn;
+	}
 }

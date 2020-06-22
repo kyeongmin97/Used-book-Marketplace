@@ -57,10 +57,12 @@ public class ManageBookUI extends TableUI{
 		model = (DefaultTableModel) table.getModel();
 		model.setNumRows(0);
 
-		for (int i = 0; i < bookList.size(); i++) {
-			String[] bookInfo = ((Book)bookList.get(i)).getBookInfo();
-			model.addRow(new Object[] { bookInfo[0], bookInfo[1], bookInfo[2], bookInfo[3], bookInfo[4],
-										bookInfo[5], bookInfo[6], bookInfo[7], bookInfo[8] });
+		if (bookList != null) {
+			for (int i = 0; i < bookList.size(); i++) {
+				String[] bookInfo = ((Book) bookList.get(i)).getBookInfo();
+				model.addRow(new Object[] { bookInfo[0], bookInfo[1], bookInfo[2], bookInfo[3], bookInfo[4],
+						bookInfo[5], bookInfo[6], bookInfo[7], bookInfo[8] });
+			}
 		}
 
 		table.setModel(model);		

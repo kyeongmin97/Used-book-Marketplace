@@ -55,10 +55,12 @@ public class ManageAccountUI extends TableUI {
 		model = (DefaultTableModel) table.getModel();
 		model.setNumRows(0);
 
-		for (int i = 0; i < userList.size(); i++) {
-			String[] bookInfo = ((User)userList.get(i)).getUserInfo();
-			if (bookInfo.length == 6)
-				model.addRow(new Object[] {bookInfo[0], bookInfo[1], bookInfo[2], bookInfo[3], bookInfo[4], bookInfo[5]});
+		if (userList != null) {
+			for (int i = 0; i < userList.size(); i++) {
+				String[] userInfo = ((User)userList.get(i)).getUserInfo();
+				if (userInfo.length == 6)
+					model.addRow(new Object[] {userInfo[0], userInfo[1], userInfo[2], userInfo[3], userInfo[4], userInfo[5]});
+			}
 		}
 
 		table.setModel(model);		

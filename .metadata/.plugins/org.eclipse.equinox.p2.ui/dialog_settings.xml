@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.equinox.internal.p2.ui.dialogs.InstallWizard.WizardSettings">
-		<item key="DIALOG_X_ORIGIN" value="112"/>
+		<item key="DIALOG_X_ORIGIN" value="-2"/>
 		<item key="DIALOG_Y_ORIGIN" value="36"/>
 		<item key="DIALOG_WIDTH" value="970"/>
 		<item key="DIALOG_HEIGHT" value="876"/>

@@ -7,9 +7,9 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.Model;
 import model.data.Book;
 import model.data.GeneralUser;
-import model.database.Database;
 import view.Admin.*;
 import view.GeneralUser.*;
 
@@ -67,7 +67,7 @@ public class View extends JFrame implements Observer{
 		this.getCardLayout().show(this.getContentPane(), sceneName);
 	}
 	
-	public void changeScene(String sceneName, TableUI tableUI, Database DB) {
+	public void changeScene(String sceneName, TableUI tableUI, Model DB) {
 		this.setCurrentTableUI(tableUI);
 		if (tableUI == null)
 			currentTableUI = null;
@@ -84,7 +84,7 @@ public class View extends JFrame implements Observer{
 	/**
 	 * Create a menu based on the user index
 	 */
-	public void setMode(Database DB) {
+	public void setMode(Model DB) {
 		if (DB.getCurrentUser() instanceof GeneralUser)	{			// set general user mode
 			setMenuUI(new MenuUI_General());
 			setSearchBookUI(new SearchBookUI_General(DB.getBookDB()));
@@ -116,7 +116,7 @@ public class View extends JFrame implements Observer{
 		this.menuUI = menuUI;
 		add("MENU", menuUI);
 	}
-	private void setSearchBookUI(SearchBookUI searchBookUI) {
+	public void setSearchBookUI(SearchBookUI searchBookUI) {
 		this.searchBookUI = searchBookUI;
 		add("SEARCH", searchBookUI);				
 	}
@@ -132,7 +132,7 @@ public class View extends JFrame implements Observer{
 		this.manageAccountUI = manageAccountUI;
 		add("MANAGE_ACCOUNT", manageAccountUI);
 	}
-	private void setCurrentTableUI(TableUI _currentTableUI) {
+	public void setCurrentTableUI(TableUI _currentTableUI) {
 		currentTableUI = _currentTableUI;
 	}
 	
