@@ -4,10 +4,10 @@ import controller.InvalidValueException;
 import model.data.GeneralUser;
 import model.data.User;
 
-public class CheckException {
+public class ExceptionCheck {
 	private Model model;
 	
-	public CheckException(Model model) {
+	public ExceptionCheck(Model model) {
 		this.model = model;
 	}
 	

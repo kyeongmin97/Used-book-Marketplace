@@ -35,9 +35,9 @@ public class Controller {
 			try {
 				model.authenticate(view.getLoginUI().getIDtxt(), view.getLoginUI().getPWtxt());	// authenticate the user
 				
-				view.setMode(model);					// set the view mode according to the administrator or general user 	
+				view.setMode(model);				// set the view mode according to the administrator or general user 	
 				setActionListener();				// add the actionListener on the buttons according to the mode
-				view.getLoginUI().setTxtEmpty();
+				view.getLoginUI().resetTxtEmpty();
 				view.changeScreen("MENU");
 			} catch (InvalidValueException e) {
 				view.showMessageScreen(e.getMessage());
@@ -53,7 +53,7 @@ public class Controller {
 	private class LoginUI_RegisterBtn_Listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			try {
-				view.getLoginUI().setTxtEmpty();
+				view.getLoginUI().resetTxtEmpty();
 				view.changeScreen("REGISTER");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -206,7 +206,8 @@ public class Controller {
 		public void actionPerformed(ActionEvent event) {
 			try {
 				int selectedIndex = view.getManageBookUI().getTable().getSelectedRow();
-				model.getCheckException().checkValidBookForModify(selectedIndex);
+				model.resetToUserBookIndex();
+				model.getExceptionCheck().checkValidBookForModify(selectedIndex);
 				
 				view.setInputMode(model.getBookDB().get(model.changeToOriginIndex(selectedIndex)));
 				setInputActionListener();
@@ -264,7 +265,7 @@ public class Controller {
 			try {
 				int selectedIndex = view.getManageBookUI().getTable().getSelectedRow();
 				String[] bookInfo = view.getInputBookUI().getAllTxt();
-
+				
 				model.modifyBook(bookInfo, selectedIndex);
 				view.showMessageScreen("complete modification!");
 				view.changeScreen("MANAGE_BOOK");
@@ -435,12 +436,5 @@ public class Controller {
 		else
 			view.getInputBookUI().addActionListener_btn(new InputBookInfoUI_ModifyBtn_Listener());
 		view.getInputBookUI().addActionListener_backBtn(new InputBookInfoUI_BackBtn_Listener());
-	}
-	
-	public View getView() {
-		return view;
-	}
-	public Model getModel() {
-		return model;
 	}
 }

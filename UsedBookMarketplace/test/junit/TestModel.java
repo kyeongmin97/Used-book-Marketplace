@@ -2,16 +2,16 @@ package junit;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.*;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import controller.InvalidValueException;
 import model.Model;
 import model.data.GeneralUser;
 import model.data.User;
 
-public class ModelTest{
+public class TestModel{
 	
 	String[] userInfo1 = { "user1", "12345678", "Park", "01098765432", "user1@gmail.com" };
 	String[] userInfo2 = { "user2", "12345678", "Park", "01012345678", "user2@naver.com" };
@@ -24,9 +24,8 @@ public class ModelTest{
 	int prevAccountDBNum;
 	int prevBookDBNum;
 	
-	@BeforeEach
+	@Before
 	public void setUp() throws InvalidValueException, Exception {
-		
 		model = new Model();
 		prevAccountDBNum = model.getAccountDB().size();
 		prevBookDBNum = model.getBookDB().size();
@@ -34,7 +33,8 @@ public class ModelTest{
 		model.registerUser(userInfo1);
 		model.setCurrentUser(model.getAccountDB().get(model.getAccountDB().size() - 2));
 	}
-	@AfterEach
+	
+	@After
 	public void tearDown() throws InvalidValueException, Exception {
 
 		model.changeUserState(prevAccountDBNum - 1);

@@ -19,7 +19,7 @@ public class Model implements Observable {
 	private User currentUser;
 
 	private ArrayList<Observer> observers = new ArrayList<>();
-	private CheckException checkExcept = new CheckException(this);
+	private ExceptionCheck exceptCheck = new ExceptionCheck(this);
 	private FileProcess file = new FileProcess();
 	
 	// constructor
@@ -76,7 +76,7 @@ public class Model implements Observable {
 	 * register the new account(general user)
 	 */
 	public void registerUser(String[] userInfo) throws InvalidValueException, Exception {
-		checkExcept.checkUserInfo(userInfo);										// check exception
+		exceptCheck.checkUserInfo(userInfo);										// check exception
 		
 		accountDB.insertElementAt(new GeneralUser(userInfo), accountDB.size()-1);	// register the new account with DB		
 		file.writeFile(accountDB, "DB_account.txt");								// update file
@@ -86,7 +86,7 @@ public class Model implements Observable {
 	 * register new book (general user)
 	 */
 	public void registerBook(String[] bookInfo) throws InvalidValueException, Exception {
-		checkExcept.checkBookInfo(bookInfo);									// check exception
+		exceptCheck.checkBookInfo(bookInfo);									// check exception
 
 		((GeneralUser) currentUser).registerBook(bookInfo);
 		
@@ -111,7 +111,7 @@ public class Model implements Observable {
 	 */
 	public void purchaseBook(int selectedIndex) throws InvalidValueException, Exception {
 		int originalIndex = changeToOriginIndex(selectedIndex); 			// the actual index stored in the database(file)
-		checkExcept.checkValidBookForPurchase(originalIndex);				// check exception
+		exceptCheck.checkValidBookForPurchase(originalIndex);				// check exception
 		
 		bookDB.get(originalIndex).setSold(true); 				// change the state of a book to "Sold"
 		file.writeFile(bookDB, "DB_book.txt");					// update file
@@ -135,7 +135,7 @@ public class Model implements Observable {
 	 * delete selected book (general user)
 	 */
 	public void deleteBook_user(int selectedIndex) throws InvalidValueException, Exception {
-		checkExcept.checkIsSelected(selectedIndex);										// check exception
+		exceptCheck.checkIsSelected(selectedIndex);										// check exception
 		
 		bookDB.remove(((GeneralUser)currentUser).getBookList().get(selectedIndex));		// remove the selected book from the database
 		((GeneralUser)currentUser).deleteBook(selectedIndex);							// remove the selected book from the user book list
@@ -148,7 +148,7 @@ public class Model implements Observable {
 	 * delete selected account (administrator)
 	 */
 	public void deleteUser(int selectedIndex) throws InvalidValueException, Exception {
-		checkExcept.checkValidAccount(selectedIndex);		// check exception
+		exceptCheck.checkValidAccount(selectedIndex);		// check exception
 		
 		Vector<Book> bookList = ((GeneralUser)accountDB.get(selectedIndex)).getBookList();
 		
@@ -166,7 +166,7 @@ public class Model implements Observable {
 	 * modify selected book (general user)
 	 */
 	public void modifyBook(String[] bookInfo, int selectedIndex) throws InvalidValueException, Exception {
-		checkExcept.checkBookInfo(bookInfo);								// check exception
+		exceptCheck.checkBookInfo(bookInfo);								// check exception
 		Book book = bookDB.get(changeToOriginIndex(selectedIndex));
 		
 		book.setTitle(bookInfo[0]);											// modify
@@ -185,7 +185,7 @@ public class Model implements Observable {
 	 * change the state of selected general user (by administrator)
 	 */
 	public void changeUserState(int selectedIndex) throws InvalidValueException, Exception {
-		checkExcept.checkIsSelected(selectedIndex);			// check exception
+		exceptCheck.checkIsSelected(selectedIndex);			// check exception
 		
 		GeneralUser user = (GeneralUser) accountDB.get(selectedIndex);
 		if (user.isActivated())								// change selected user state
@@ -249,7 +249,7 @@ public class Model implements Observable {
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
-	public CheckException getCheckException() {
-		return checkExcept;
+	public ExceptionCheck getExceptionCheck() {
+		return exceptCheck;
 	}
 }

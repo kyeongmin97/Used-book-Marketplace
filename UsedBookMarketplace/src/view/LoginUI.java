@@ -56,7 +56,7 @@ public class LoginUI extends JPanel {
 	}
 	
 	
-	public void setTxtEmpty() {
+	public void resetTxtEmpty() {
 		id_txtf.setText("");
 		pw_pwf.setText("");
 	}
